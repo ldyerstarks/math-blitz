@@ -3,6 +3,12 @@
   "topic_index": 1,
   "level": 3.0,
   "history": [
-    {"day": 1, "topic": "Two-step linear equations", "title": "The Balance Trick", "result": "pending"}
+    {
+      "day": 1,
+      "topic": "Two-step linear equations",
+      "title": "The Balance Trick",
+      "result": "pending",
+      "sent": false
+    }
   ]
 }

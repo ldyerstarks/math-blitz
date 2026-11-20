@@ -16,6 +16,7 @@ Search `subject:"Math Blitz" newer_than:2d` and read the newest emails:
 - "💬 note from your son" → read it ("too hard", "too easy", topic requests) and adjust.
 
 ## 2. Plan today
+- **First check `progress.json`: if the newest day has `"sent": false`, it was never texted. Skip making a new video and just text that day's link (step 5), then set `sent: true` and push.**
 - Today's day number = `progress.json.last_day + 1`. If that's a multiple of 7 → **Boss Battle** (`"boss": true`): no new topic, a harder mixed question over the last 6 days' topics.
 - Otherwise pick the topic per curriculum.md: next topic if he got the last one right; **Instant Replay** (same topic, new angle, one notch easier) if he missed or skipped it.
 - Write the question at his Math Level (see the level table in curriculum.md). 4 choices; the 3 wrong ones are the classic mistakes. Double-check the math by actually computing it (run Python). Exactly one choice may be correct.
@@ -31,14 +32,15 @@ Copy the shape of `engine/lessons/day001.json`:
 1. `cd engine && python3 render.py lessons/dayNNN.json ../videos/dayNNN.mp4` (about 1–2 min).
 2. Pull 3 frames (`ffmpeg -ss T -i … -frames:v 1`) at the busiest moments and LOOK at them: text fits, nothing overlaps, math is right.
 3. `python3 build_site.py` (from engine/) → rebuilds `lessons.json` at the repo root.
-4. Update `progress.json`: last_day, topic index, level, history entry (day, topic, result of yesterday).
+4. Update `progress.json`: last_day, topic index, level, history entry (day, topic, result of yesterday, `sent`).
 5. Commit "Day NNN: <title>" and push to main. GitHub Pages republishes in about 1 minute. Confirm https://ldyerstarks.github.io/math-blitz/?d=NNN loads (or wait 60 s and retry once).
 
 ## 5. Text him (Inkbox iMessage, identity @jackiesmath)
 Send to his number (given in the scheduled-task prompt, never written in this repo) with `inkbox_imessage_send`. One short hype line naming today's topic and the XP on the line, then the link `https://ldyerstarks.github.io/math-blitz/?d=NNN`. Boss days: add send_style "fireworks". Never send more than one text per day; never reply to his messages beyond a short friendly acknowledgment, and nothing personal.
-If the send fails because he isn't connected, email Len (the Gmail connector account, subject "Math Blitz — couldn't text him today") with the link so he can forward it.
+After a successful send set `sent: true` in progress.json and push. If the send fails because he isn't connected, leave `sent: false` and email Len (the Gmail connector account, subject "Math Blitz — couldn't text him today") with the link so he can forward it.
 
 ## Guardrails
 - Original questions only; never copy Khan/College Board content. Linking is fine.
+- Text at 7:00 am ET: if everything is ready earlier, wait until 7:00 before sending.
 - Stop and email Len instead of publishing if the render fails twice or the math can't be verified.
 - Don't change the alert script, the scoreboard rules, or the prizes; those are Len's calls.
