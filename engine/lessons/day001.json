@@ -1,0 +1,122 @@
+{
+  "day": 1,
+  "title": "The Balance Trick",
+  "topic": "Two-step linear equations",
+  "sat_domain": "Algebra",
+  "voice": "am_puck",
+  "speed": 1.08,
+  "scenes": [
+    {
+      "kind": "title",
+      "big": "THE BALANCE TRICK",
+      "sub": "Solving for x like a pro",
+      "tag": "SAT skill: Algebra  ·  +25 XP",
+      "say": "Ladies and gentlemen, welcome to Math Blitz! Day one, and we are starting with the move that shows up all over the SAT. The Balance Trick!"
+    },
+    {
+      "kind": "board",
+      "heading": "THE MATCHUP",
+      "lines": [
+        {
+          "t": "3x + 7 = 22",
+          "c": "white",
+          "s": 120
+        }
+      ],
+      "note": "An equation is a scale. Whatever you do to one side, do to the other.",
+      "note_at": 2.2,
+      "say": "Here's today's opponent. Three x plus seven equals twenty two. Think of it like a scale. Whatever you do to one side, you do to the other, and it stays balanced."
+    },
+    {
+      "kind": "board",
+      "heading": "MOVE 1: KILL THE +7",
+      "lines": [
+        {
+          "t": "3x + 7 = 22",
+          "c": "white"
+        },
+        {
+          "t": "− 7      − 7",
+          "c": "pink"
+        },
+        {
+          "t": "3x = 15",
+          "c": "yellow",
+          "s": 110
+        }
+      ],
+      "say": "Move one! Get rid of that plus seven. Subtract seven from both sides. Boom. Three x equals fifteen."
+    },
+    {
+      "kind": "board",
+      "heading": "MOVE 2: SPLIT THE 3",
+      "lines": [
+        {
+          "t": "3x = 15",
+          "c": "white"
+        },
+        {
+          "t": "÷ 3     ÷ 3",
+          "c": "pink"
+        },
+        {
+          "t": "x = 5",
+          "c": "green",
+          "s": 140
+        }
+      ],
+      "note": "Check it: 3(5) + 7 = 22. It works!",
+      "note_at": 4.6,
+      "say": "Move two! X is being multiplied by three, so divide both sides by three. X equals five! And the pros always check. Three times five, plus seven, is twenty two. Nothing but net!"
+    },
+    {
+      "kind": "question",
+      "prompt": "4x − 5 = 23",
+      "ask": "What is the value of x?",
+      "choices": [
+        "4.5",
+        "7",
+        "18",
+        "28"
+      ],
+      "hold": 3.0,
+      "say": "Now it's your turn, champ! Twenty five XP on the line. Four x minus five equals twenty three. What is x? Use the Balance Trick, then tap your answer below the video. Answer fast for a speed bonus!"
+    }
+  ],
+  "question": {
+    "prompt": "4x − 5 = 23. What is the value of x?",
+    "choices": [
+      "4.5",
+      "7",
+      "18",
+      "28"
+    ],
+    "answer": 1,
+    "explain": "Add 5 to both sides: 4x = 28. Divide both sides by 4: x = 7. Check: 4(7) − 5 = 23 ✔",
+    "trap_notes": {
+      "0": "Subtracted 5 instead of adding it (4x = 18, then ÷4)",
+      "2": "Did 23 − 5 and stopped",
+      "3": "Got 4x = 28 but forgot to divide by 4"
+    }
+  },
+  "level": 3.0,
+  "resources": [
+    {
+      "name": "Khan Academy",
+      "quest": true,
+      "label": "Do one Khan Academy practice set on two-step equations (get 3 right in a row).",
+      "button": "Practice on Khan Academy",
+      "url": "https://www.khanacademy.org/search?page_search_query=two-step%20equations"
+    },
+    {
+      "name": "Desmos",
+      "label": "The free graphing calculator you'll use on the real SAT. Type 4x-5=23 and see what it does.",
+      "url": "https://www.desmos.com/calculator"
+    },
+    {
+      "name": "Khan: Get Ready for SAT Prep: Math",
+      "label": "The free warm-up course built for students starting early.",
+      "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
+    }
+  ]
+}

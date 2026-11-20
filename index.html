@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Math Blitz</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root { --bg:#0e1230; --card:#1b2050; --card2:#232a66; --y:#ffd640; --p:#ff5ca8; --c:#40dcff; --g:#5ceb8c; --o:#ff963c; --r:#ff4d4d; --soft:#bec6eb; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { background:#1e1040; }
+  body { margin:0; background:linear-gradient(#0e1230,#280e46) fixed; color:#fff; min-height:100vh;
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif; }
+  body.boss { background:linear-gradient(#2a0a14,#4a0d1e) fixed; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:14px 16px 4px; max-width:520px; margin:0 auto; }
+  .logo { color:var(--y); font-weight:900; font-size:22px; letter-spacing:.5px; }
+  #fbBtn { background:rgba(255,255,255,.1); border:0; color:var(--soft); font-size:15px; width:32px; height:32px; border-radius:50%; cursor:pointer; }
+  main { max-width:520px; margin:0 auto; padding:4px 14px 40px; }
+  .card { background:var(--card); border-radius:18px; padding:16px; margin-top:14px; }
+  /* player card */
+  .player { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; align-items:center; }
+  .rankicon { font-size:44px; grid-row:span 2; }
+  .rankname { font-weight:900; font-size:20px; }
+  .rankname small { color:var(--soft); font-weight:600; font-size:14px; }
+  .bar { height:12px; background:rgba(255,255,255,.12); border-radius:8px; overflow:hidden; }
+  .bar > i { display:block; height:100%; background:linear-gradient(90deg,var(--y),var(--o)); border-radius:8px; transition:width 1s ease; }
+  .stats { display:flex; gap:8px; margin-top:12px; }
+  .stat { flex:1; background:var(--card2); border-radius:12px; padding:8px 6px; text-align:center; }
+  .stat b { display:block; font-size:19px; }
+  .stat span { font-size:11px; color:var(--soft); text-transform:uppercase; letter-spacing:.5px; }
+  .badges { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
+  .badge { background:rgba(255,214,64,.14); color:var(--y); border-radius:20px; padding:4px 10px; font-size:13px; font-weight:700; }
+  h1 { font-size:21px; margin:16px 4px 10px; }
+  .bossbanner { background:var(--r); color:#fff; font-weight:900; text-align:center; border-radius:14px; padding:10px; margin-top:14px; letter-spacing:1px; animation:pulse 1.2s infinite; }
+  @keyframes pulse { 50% { transform:scale(1.03); } }
+  video { width:100%; border-radius:18px; background:#000; display:block; max-height:72vh; }
+  .locked { color:var(--soft); text-align:center; font-weight:600; }
+  .q { font-size:20px; font-weight:800; margin:0 0 6px; }
+  .reward { color:var(--y); font-weight:700; font-size:14px; margin-bottom:8px; }
+  .reward b { color:#fff; }
+  .choice { display:flex; gap:14px; align-items:center; width:100%; text-align:left; font:inherit; font-size:20px; font-weight:700;
+            color:#fff; padding:14px 16px; margin:8px 0; border-radius:14px; border:3px solid; background:rgba(255,255,255,.06); cursor:pointer; }
+  .choice b { font-size:22px; }
+  .choice:disabled { cursor:default; opacity:.5; }
+  .choice.right { opacity:1; background:rgba(92,235,140,.25); border-color:var(--g) !important; }
+  .choice.wrong { opacity:1; background:rgba(255,92,168,.25); }
+  .result { font-size:24px; font-weight:900; margin:14px 0 6px; }
+  .xpgain { display:inline-block; color:var(--y); font-weight:900; font-size:22px; animation:pop .6s ease; }
+  @keyframes pop { 0% { transform:scale(.3); opacity:0 } 70% { transform:scale(1.3) } 100% { transform:scale(1); opacity:1 } }
+  .explain { color:var(--soft); font-size:17px; line-height:1.45; }
+  .quest h3 { margin:0 0 6px; color:var(--y); font-size:18px; }
+  .quest p { margin:0 0 10px; color:var(--soft); font-size:15px; line-height:1.4; }
+  .btn { display:inline-block; font:inherit; font-weight:800; font-size:16px; padding:11px 16px; border-radius:12px; border:0; cursor:pointer; text-decoration:none; margin:4px 6px 4px 0; }
+  .btn.go { background:var(--c); color:#0e1230; }
+  .btn.done { background:var(--g); color:#0e1230; }
+  .btn:disabled { opacity:.4; cursor:default; }
+  .res a { color:var(--c); }
+  .res li { margin:6px 0; color:var(--soft); font-size:15px; }
+  .past { margin-top:20px; color:var(--soft); font-size:14px; text-align:center; }
+  .past a { color:var(--c); }
+  .err { text-align:center; padding:40px 10px; color:var(--soft); }
+  #fb { position:fixed; top:54px; right:12px; width:min(300px,90vw); background:var(--card2); border-radius:14px; padding:12px; box-shadow:0 8px 30px rgba(0,0,0,.5); display:none; z-index:9; }
+  #fb textarea { width:100%; height:80px; border-radius:10px; border:0; padding:8px; font:inherit; font-size:15px; }
+  #confetti { position:fixed; inset:0; pointer-events:none; z-index:8; }
+</style>
+</head>
+<body>
+<header><div class="logo">MATH BLITZ</div><button id="fbBtn" title="Send Dad a note" aria-label="Feedback">💬</button></header>
+<div id="fb"><div style="font-weight:700;margin-bottom:6px">Message Dad (too hard? too easy? idea?)</div>
+  <textarea id="fbText" maxlength="500"></textarea>
+  <button class="btn go" id="fbSend">Send</button> <button class="btn" id="fbClose" style="background:transparent;color:var(--soft)">Close</button></div>
+<canvas id="confetti"></canvas>
+<main id="app"><div class="err">Loading…</div></main>
+<script>
+// Google Apps Script web app: emails Dad + keeps the scoreboard (XP, rank, streak, level).
+const ALERT_URL = "__ALERT_URL__";
+const LIVE = ALERT_URL && !ALERT_URL.startsWith("__");
+const COLORS = ["--c","--g","--o","--p"];
+const RANKS = [{at:0,name:"Rookie",icon:"🥉"},{at:250,name:"Starter",icon:"🥈"},{at:750,name:"All-Star",icon:"🥇"},{at:1500,name:"MVP",icon:"🏆"},{at:3000,name:"Legend",icon:"👑"},{at:5000,name:"Hall of Fame",icon:"💎"}];
+const STATE = {};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
+
+async function call(ev, extra) {
+  if (!LIVE) return null;
+  const p = new URLSearchParams(Object.assign({ ev, day: STATE.day || 0, title: STATE.title || "" }, extra || {}));
+  try {
+    const r = await fetch(ALERT_URL + "?" + p.toString(), { keepalive: ev !== "stats" });
+    const j = await r.json();
+    if (j && typeof j.xp === "number") { store("blitz_stats", j); return j; }
+  } catch (e) {
+    // CORS/network failure: fire-and-forget so Dad still gets the email
+    if (ev !== "stats") try { fetch(ALERT_URL + "?" + p.toString(), { mode: "no-cors", keepalive: true }); } catch (e2) {}
+  }
+  return null;
+}
+
+function renderPlayer(s) {
+  if (!s) s = store("blitz_stats") || { xp: 0, streak: 0, wins: 0, answered: 0, badges: [], level: 3, levelName: "Algebra 1" };
+  let rank = RANKS[0], next = null;
+  RANKS.forEach((r, i) => { if (s.xp >= r.at) { rank = r; next = RANKS[i + 1] || null; } });
+  const pct = next ? Math.round(100 * (s.xp - rank.at) / (next.at - rank.at)) : 100;
+  const prize = next && STATE.prizes && STATE.prizes[next.name] ? ` · prize: ${esc(STATE.prizes[next.name])}` : "";
+  $("player").innerHTML = `
+    <div class="player">
+      <div class="rankicon">${rank.icon}</div>
+      <div class="rankname">${rank.name} <small>${s.xp} XP${next ? ` · ${next.at - s.xp} to ${next.icon} ${next.name}${prize}` : " · MAX RANK"}</small></div>
+      <div class="bar"><i style="width:${pct}%"></i></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>🔥 ${s.streak}</b><span>day streak</span></div>
+      <div class="stat"><b>${s.wins}/${s.answered}</b><span>right</span></div>
+      <div class="stat"><b>Lv ${Number(s.level || 3).toFixed(1)}</b><span>${esc(s.levelName || "")}</span></div>
+    </div>
+    ${s.badges && s.badges.length ? `<div class="badges">${s.badges.map(b => `<span class="badge">${esc(b)}</span>`).join("")}</div>` : ""}`;
+}
+
+async function boot() {
+  const app = $("app");
+  let man;
+  try { man = await (await fetch("lessons.json", { cache: "no-store" })).json(); }
+  catch (e) { app.innerHTML = '<div class="err">Couldn\'t load today\'s video. Try again in a minute.</div>'; return; }
+  const want = parseInt(new URLSearchParams(location.search).get("d") || "0", 10);
+  const L = man.days.find(x => x.day === want) || man.days[man.days.length - 1];
+  const boss = !!L.boss;
+  Object.assign(STATE, { day: L.day, title: L.title, prizes: man.prizes || {} });
+  if (boss) document.body.classList.add("boss");
+  const q = JSON.parse(atob(L.q));
+  const mult = boss ? 2 : 1;
+
+  app.innerHTML = `
+    <div class="card" id="player"></div>
+    ${boss ? `<div class="bossbanner">⚔️ BOSS BATTLE · DOUBLE XP ⚔️</div>` : ""}
+    <h1>Day ${L.day}: ${esc(L.title)}</h1>
+    <video id="v" src="${L.video}" controls playsinline preload="metadata"></video>
+    <div class="card" id="qcard"><div class="locked">🔒 Finish the video to unlock today's challenge (+${25 * mult} XP)</div></div>
+    <div id="quest"></div>
+    <div class="past">${man.days.length > 1 ? "Rewatch: " + man.days.slice(-7).filter(x => x.day !== L.day).map(x => `<a href="?d=${x.day}">Day ${x.day}</a>`).join(" · ") : ""}</div>`;
+  renderPlayer();
+  call("stats").then(s => { if (s) { renderPlayer(s); syncDay(s); } });
+
+  const v = $("v");
+  let started = false, finished = false, maxT = 0, unlockedAt = 0, answeredLocal = store("blitz_ans_" + L.day);
+  v.addEventListener("play", () => { if (!started) { started = true; call("started"); } });
+  v.addEventListener("timeupdate", () => {
+    if (!v.seeking && v.currentTime > maxT && v.currentTime - maxT < 2) maxT = v.currentTime;
+    if (!finished && v.duration && maxT / v.duration > 0.9) unlock();
+  });
+  v.addEventListener("ended", unlock);
+
+  function unlock() {
+    if (finished) return; finished = true; unlockedAt = Date.now();
+    call("watched", { pct: v.duration ? Math.round(100 * maxT / v.duration) : 100 });
+    showQuestion();
+  }
+  function syncDay(s) {
+    const d = s.days && s.days[String(L.day)];
+    if (d && d.pick && !answeredLocal) {
+      const i = q.choices.findIndex((c, k) => d.pick.startsWith("ABCD"[k] + ":"));
+      if (i >= 0) { answeredLocal = { pick: i }; store("blitz_ans_" + L.day, answeredLocal); finished = true; showQuestion(); }
+    }
+    if (d && d.bonus) store("blitz_bonus_" + L.day, 1);
+    renderQuest();
+  }
+  if (answeredLocal) { finished = true; showQuestion(); }
+
+  function showQuestion() {
+    $("qcard").innerHTML = `<p class="q">${esc(q.prompt)}</p>
+      <div class="reward" id="rw">Win <b>+${25 * mult} XP</b> · <span id="speed">⚡ speed bonus +${10 * mult} XP for <b id="secs">90</b>s</span></div>` +
+      q.choices.map((c, i) => `<button class="choice" data-i="${i}" style="border-color:var(${COLORS[i]})"><b style="color:var(${COLORS[i]})">${"ABCD"[i]}</b>${esc(c)}</button>`).join("") +
+      `<div id="res"></div>`;
+    document.querySelectorAll(".choice").forEach(b => b.onclick = () => answer(+b.dataset.i));
+    if (answeredLocal) { reveal(answeredLocal.pick, false); return; }
+    const t = setInterval(() => {
+      const left = 90 - Math.floor((Date.now() - (unlockedAt || Date.now())) / 1000);
+      if (!$("secs") || answeredLocal) return clearInterval(t);
+      if (left <= 0) { $("speed").textContent = "speed bonus expired — still worth it!"; clearInterval(t); }
+      else $("secs").textContent = left;
+    }, 1000);
+    renderQuest();
+  }
+  async function answer(i) {
+    if (answeredLocal) return;
+    answeredLocal = { pick: i };
+    store("blitz_ans_" + L.day, answeredLocal);
+    const right = i === q.a;
+    reveal(i, true);
+    const before = (store("blitz_stats") || {}).xp || 0;
+    const s = await call("answered", { pick: "ABCD"[i] + ": " + q.choices[i], correct: right ? "yes" : "no", answer: "ABCD"[q.a] + ": " + q.choices[q.a] });
+    if (s) {
+      renderPlayer(s);
+      const gained = s.xp - before;
+      if (gained > 0 && $("gain")) $("gain").innerHTML = `<span class="xpgain">+${gained} XP</span>`;
+    }
+  }
+  function reveal(i, fresh) {
+    const right = i === q.a;
+    document.querySelectorAll(".choice").forEach(b => {
+      const k = +b.dataset.i; b.disabled = true;
+      if (k === q.a) b.classList.add("right"); else if (k === i) b.classList.add("wrong");
+    });
+    if ($("rw")) $("rw").remove();
+    const cheers = ["NOTHING BUT NET! 🏀", "TOUCHDOWN! 🏈", "GOOOAL! ⚽", "HOME RUN! ⚾", "SLAM DUNK! 🏀", "HAT TRICK! 🏒"];
+    $("res").innerHTML = `<div class="result" style="color:var(${right ? "--g" : "--p"})">${right ? (boss ? "BOSS DEFEATED! ⚔️" : cheers[L.day % cheers.length]) : "So close! Here's the play-by-play:"}</div>
+      <div id="gain"></div><div class="explain">${esc(q.explain)}</div>
+      ${right ? "" : `<div class="explain" style="margin-top:8px">💪 Tomorrow's video runs this play back so you'll own it.</div>`}`;
+    if (right && fresh) confetti();
+    renderQuest();
+  }
+  function renderQuest() {
+    const res = L.resources || [];
+    if (!finished || !res.length) { $("quest").innerHTML = ""; return; }
+    const quest = res.find(r => r.quest) || res[0];
+    const done = store("blitz_bonus_" + L.day);
+    $("quest").innerHTML = `<div class="card quest">
+      <h3>⭐ Bonus Quest · +${30 * mult} XP</h3>
+      <p>${esc(quest.label)}</p>
+      <a class="btn go" id="qGo" href="${esc(quest.url)}" target="_blank" rel="noopener">${esc(quest.button || "Open practice")}</a>
+      <button class="btn done" id="qDone" ${done ? "disabled" : ""}>${done ? "✅ Quest complete" : "I did it!"}</button>
+      ${res.length > 1 ? `<ul class="res">${res.filter(r => r !== quest).map(r => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a> — ${esc(r.label)}</li>`).join("")}</ul>` : ""}
+    </div>`;
+    let opened = false;
+    $("qGo").onclick = () => { opened = true; };
+    if (!done) $("qDone").onclick = async () => {
+      if (!opened && !confirm("Did you really do the practice? Dad gets a note either way 😉")) return;
+      store("blitz_bonus_" + L.day, 1);
+      $("qDone").disabled = true; $("qDone").textContent = "✅ Quest complete";
+      const s = await call("bonus", { pick: quest.name });
+      if (s) renderPlayer(s);
+    };
+  }
+}
+
+// feedback → emails Dad
+$("fbBtn").onclick = () => { $("fb").style.display = $("fb").style.display === "block" ? "none" : "block"; };
+$("fbClose").onclick = () => { $("fb").style.display = "none"; };
+$("fbSend").onclick = () => {
+  const t = $("fbText").value.trim(); if (!t) return;
+  call("feedback", { pick: t.slice(0, 500) }); $("fbText").value = ""; $("fb").style.display = "none"; alertLite("Sent to Dad 👍");
+};
+function alertLite(msg) { const d = document.createElement("div"); d.textContent = msg; d.style.cssText = "position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#5ceb8c;color:#0e1230;font-weight:800;padding:10px 16px;border-radius:12px;z-index:10"; document.body.appendChild(d); setTimeout(() => d.remove(), 2200); }
+
+function confetti() {
+  const c = $("confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight;
+  const cols = ["#ffd640", "#ff5ca8", "#40dcff", "#5ceb8c", "#ff963c"];
+  const P = Array.from({ length: 140 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, vx: (Math.random() - .5) * 4, vy: 2 + Math.random() * 4, s: 5 + Math.random() * 6, c: cols[Math.floor(Math.random() * 5)], r: Math.random() * 6 }));
+  let f = 0; (function tick() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += .05; p.r += .1; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); x.restore(); }); if (++f < 200) requestAnimationFrame(tick); else x.clearRect(0, 0, c.width, c.height); })();
+}
+boot();
+</script>
+</body>
+</html>

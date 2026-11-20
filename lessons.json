@@ -1,0 +1,37 @@
+{
+ "days": [
+  {
+   "day": 1,
+   "title": "The Balance Trick",
+   "video": "videos/day001.mp4",
+   "q": "eyJwcm9tcHQiOiAiNHggXHUyMjEyIDUgPSAyMy4gV2hhdCBpcyB0aGUgdmFsdWUgb2YgeD8iLCAiY2hvaWNlcyI6IFsiNC41IiwgIjciLCAiMTgiLCAiMjgiXSwgImEiOiAxLCAiZXhwbGFpbiI6ICJBZGQgNSB0byBib3RoIHNpZGVzOiA0eCA9IDI4LiBEaXZpZGUgYm90aCBzaWRlcyBieSA0OiB4ID0gNy4gQ2hlY2s6IDQoNykgXHUyMjEyIDUgPSAyMyBcdTI3MTQifQ==",
+   "boss": false,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Do one Khan Academy practice set on two-step equations (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=two-step%20equations"
+    },
+    {
+     "name": "Desmos",
+     "label": "The free graphing calculator you'll use on the real SAT. Type 4x-5=23 and see what it does.",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Get Ready for SAT Prep: Math",
+     "label": "The free warm-up course built for students starting early.",
+     "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
+    }
+   ]
+  }
+ ],
+ "prizes": {
+  "Starter": "You pick dinner \ud83c\udf55",
+  "All-Star": "1 extra hour of gaming \ud83c\udfae",
+  "MVP": "$25 gift card of your choice \ud83c\udf81",
+  "Legend": "A new video game \ud83d\udd79\ufe0f",
+  "Hall of Fame": "Big prize \u2014 Dad's surprise \ud83c\udfc6"
+ }
+}

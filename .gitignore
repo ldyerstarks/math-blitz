@@ -1,0 +1,5 @@
+kokoro.onnx
+voices.bin
+__pycache__/
+*.part.mp4
+engine/alerts/
