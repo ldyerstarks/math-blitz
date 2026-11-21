@@ -69,6 +69,10 @@
   .rfdots i.ok { background:var(--g); } .rfdots i.no { background:var(--p); } .rfdots i.cur { background:var(--y); }
   .rfwhy { color:var(--soft); font-size:16px; margin-top:8px; min-height:22px; }
   .rfdone { text-align:center; font-size:22px; font-weight:900; }
+  .prog summary { cursor:pointer; font-weight:800; color:var(--c); list-style:none; }
+  .prog summary::-webkit-details-marker { display:none; }
+  .prog svg { width:100%; height:auto; display:block; margin-top:8px; }
+  .prog .cap { color:var(--soft); font-size:12px; margin-top:4px; }
   #confetti { position:fixed; inset:0; pointer-events:none; z-index:8; }
 </style>
 </head>
@@ -104,6 +108,40 @@ async function call(ev, extra) {
   return null;
 }
 
+// Math Level (1–10) as an approximate school grade: 1 ≈ 6th, 10 ≈ 12th / 1600-ready (same formula as the scoreboard)
+const gradeOf = l => Math.round((6 + (l - 1) * 6 / 9) * 10) / 10;
+const ord = n => n + (["th","st","nd","rd"][(n % 100 - 20) % 10] || ["th","st","nd","rd"][n % 100] || "th");
+function renderProgress(s) {
+  const box = $("prog");
+  if (!s || !s.days) return;
+  const adj = Number(s.adjust) || 0, grade = Number(s.grade) || 8;
+  const pts = Object.keys(s.days).map(Number).sort((a, b) => a - b)
+    .filter(n => s.days[n].levelAfter !== undefined)
+    .map(n => ({ day: n, g: gradeOf(Math.max(1, Math.min(10, s.days[n].levelAfter + adj))) }));
+  if (!pts.length) return;
+  const W = 340, H = 170, L = 30, R = 8, T = 10, B = 22, gMin = 5, gMax = 12.5;
+  const x = i => L + (pts.length === 1 ? (W - L - R) / 2 : i * (W - L - R) / (pts.length - 1));
+  const y = g => T + (gMax - Math.max(gMin, Math.min(gMax, g))) * (H - T - B) / (gMax - gMin);
+  const grid = [6, 8, 10, 12].map(g => `<line x1="${L}" x2="${W - R}" y1="${y(g)}" y2="${y(g)}" stroke="rgba(255,255,255,.08)"/><text x="${L - 6}" y="${y(g) + 4}" fill="#8e96c6" font-size="10" text-anchor="end">${g}</text>`).join("");
+  const line = pts.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.g).toFixed(1)}`).join(" ");
+  const last = pts[pts.length - 1];
+  const ahead = Math.round((last.g - grade) * 10) / 10;
+  box.style.display = "";
+  box.innerHTML = `<details><summary>📈 Your climb to 1600 · working at grade ${last.g} ${ahead >= 0 ? `(+${ahead} ahead of ${ord(grade)})` : `(${ahead} vs ${ord(grade)})`}</summary>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Math level as grade level over time">
+      ${grid}
+      <line x1="${L}" x2="${W - R}" y1="${y(12)}" y2="${y(12)}" stroke="#ffd640" stroke-dasharray="5 4" stroke-width="1.5"/>
+      <text x="${W - R}" y="${y(12) - 4}" fill="#ffd640" font-size="10" text-anchor="end">1600-ready</text>
+      <line x1="${L}" x2="${W - R}" y1="${y(grade)}" y2="${y(grade)}" stroke="#bec6eb" stroke-dasharray="3 4" stroke-width="1.2"/>
+      <text x="${W - R}" y="${y(grade) + 13}" fill="#bec6eb" font-size="10" text-anchor="end">your grade (${ord(grade)})</text>
+      ${pts.length > 1 ? `<path d="${line}" fill="none" stroke="#40dcff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>` : ""}
+      ${pts.map((p, i) => `<circle cx="${x(i)}" cy="${y(p.g)}" r="${i === pts.length - 1 ? 5 : 3}" fill="#40dcff"/>`).join("")}
+      <text x="${L}" y="${H - 6}" fill="#8e96c6" font-size="10">Day ${pts[0].day}</text>
+      ${pts.length > 1 ? `<text x="${W - R}" y="${H - 6}" fill="#8e96c6" font-size="10" text-anchor="end">Day ${last.day}</text>` : ""}
+    </svg>
+    <div class="cap">Your Math Level shown as a school grade (approximate). Get to the gold line and you're 1600-ready.</div></details>`;
+}
+
 function renderPlayer(s) {
   if (!s) s = store("blitz_stats") || { xp: 0, streak: 0, wins: 0, answered: 0, badges: [], level: 3, levelName: "Algebra 1" };
   let rank = RANKS[0], next = null;
@@ -122,6 +160,7 @@ function renderPlayer(s) {
       <div class="stat"><b>Lv ${Number(s.level || 3).toFixed(1)}</b><span>${esc(s.levelName || "")}</span></div>
     </div>
     ${s.badges && s.badges.length ? `<div class="badges">${s.badges.map(b => `<span class="badge">${esc(b)}</span>`).join("")}</div>` : ""}`;
+  try { renderProgress(s); } catch (e) {}
 }
 
 async function boot() {
@@ -141,6 +180,7 @@ async function boot() {
 
   app.innerHTML = `
     <div class="card" id="player"></div>
+    <div class="card prog" id="prog" style="display:none"></div>
     ${boss ? `<div class="bossbanner">⚔️ BOSS BATTLE · DOUBLE XP ⚔️</div>` : ""}
     <h1>Day ${L.day}: ${esc(L.title)}</h1>
     <video id="v" src="${L.video}" ${L.poster ? `poster="${L.poster}"` : ""} controls playsinline preload="auto"></video>
