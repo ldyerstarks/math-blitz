@@ -40,7 +40,8 @@
   .screen { display:none; }
   .screen.on { display:block; animation:fadein .25s ease; }
   @keyframes fadein { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
-  video { width:100%; border-radius:18px; background:#000; display:block; max-height:64vh; }
+  video { width:100%; border-radius:18px; background:#000; display:block; max-height:calc(100vh - 300px); max-height:calc(100svh - 300px); }
+  body.old video { max-height:calc(100vh - 370px); max-height:calc(100svh - 370px); }
   .hint { color:var(--soft); text-align:center; font-size:15px; margin:12px 6px 0; line-height:1.4; }
   .q { font-size:20px; font-weight:800; margin:0 0 6px; line-height:1.3; }
   .reward { color:var(--y); font-weight:700; font-size:14px; margin-bottom:8px; }
@@ -169,10 +170,12 @@ function track(code) { TRAIL.push(code + "@" + Math.round((Date.now() - T0) / 10
 function flush() {
   if (!LIVE || TRAIL.length <= SENT) return;
   const secs = Math.round((Date.now() - T0) / 1000);
-  const s = (TRAIL.slice(SENT).join(".") + "|" + secs + "s").slice(-180);
-  SENT = TRAIL.length;
-  for (let i = 0; i < s.length; i += 60 * 2) {
-    const p = new URLSearchParams({ ev: "started", day: STATE.day || 0, title: STATE.title || "", pct: "ux", pick: s.slice(i, i + 60), answer: s.slice(i + 60, i + 120) });
+  const toks = TRAIL.slice(SENT); SENT = TRAIL.length;
+  toks.push("|" + secs + "s");
+  const fill = () => { let out = ""; while (toks.length && (out ? out.length + 1 : 0) + toks[0].length <= 60) out += (out ? "." : "") + toks.shift(); return out; };
+  for (let row = 0; row < 3 && toks.length; row++) {
+    const pick = fill(), answer = row === 2 && toks.length > 1 ? "+" + toks.length + " more" : fill();
+    const p = new URLSearchParams({ ev: "started", day: STATE.day || 0, title: STATE.title || "", pct: "ux", pick, answer });
     try { fetch(ALERT_URL + "?" + p.toString(), { mode: "no-cors", keepalive: true }); } catch (e) {}
   }
 }
@@ -260,6 +263,7 @@ async function boot() {
   const boss = !!L.boss, mult = boss ? 2 : 1;
   Object.assign(STATE, { day: L.day, title: L.title, prizes: man.prizes || {} });
   if (boss) document.body.classList.add("boss");
+  if (L.day < latest.day) document.body.classList.add("old");
   const q = JSON.parse(atob(L.q));
   const RAPID = (L.rapid || []).map(x => JSON.parse(atob(x)));
   const rkey = "blitz_rapid_" + L.day, ukey = "blitz_unl_" + L.day;
@@ -270,7 +274,7 @@ async function boot() {
     <div class="daytitle"><small>Day ${L.day}${L.day === latest.day ? " · today" : ""}</small><b>${esc(L.title)}</b></div>
     <section class="screen" id="s-watch">
       <video id="v" src="${L.video}" ${L.poster ? `poster="${L.poster}"` : ""} controls playsinline preload="auto"></video>
-      <div class="hint" id="watchHint"></div>
+      <div class="hint" id="watchHint">🔒 Watch to the end to unlock the question</div>
     </section>
     <section class="screen" id="s-answer"><div class="card" id="qcard"></div></section>
     <section class="screen" id="s-rapid"><div class="card" id="rapid"></div></section>
@@ -326,8 +330,9 @@ async function boot() {
   }
   function renderBar() {
     if (cur === "watch") {
+      $("watchHint").textContent = finished ? "" : "🔒 Watch to the end to unlock the question";
       if (finished) bar(answeredLocal ? "Next: ⚡ Rapid Fire ➜" : "Next: 🎯 Answer the question ➜", () => go(answeredLocal ? "rapid" : "answer", "n"));
-      else bar("🔒 Watch to the end to unlock the question", () => { track("LW"); const v = $("v"); if (v.paused) v.play().catch(() => {}); }, true);
+      else bar("");
     } else if (cur === "answer") {
       bar(answeredLocal ? (RAPID.length ? `Next: ⚡ Rapid Fire · ${RAPID.length} questions ➜` : "Next: ⭐ Bonus Quest ➜") : "", () => go(RAPID.length ? "rapid" : "bonus", "n"));
     } else if (cur === "rapid") {
@@ -344,10 +349,10 @@ async function boot() {
     if (!finished && v.duration && maxT / v.duration > 0.9) unlock();
   });
   v.addEventListener("seeked", () => { if (!finished && v.currentTime - maxT > 3) { track("vs"); toast("No skipping ahead 😉 Watch it all to unlock the question", 3000); } });
-  v.addEventListener("ended", () => { if (!finished && maxT / (v.duration || 1) > 0.9) unlock(); });
+  v.addEventListener("ended", () => { maxT = Math.max(maxT, v.duration || 0); unlock(); });
   function unlock() {
     if (finished) return; finished = true; unlockedAt = Date.now(); store(ukey, unlockedAt); track("vd");
-    call("watched", { pct: v.duration ? Math.round(100 * maxT / v.duration) : 100 });
+    STATE.watchP = call("watched", { pct: v.duration ? Math.round(100 * maxT / v.duration) : 100 }).then(s => { if (s) renderPlayer(s); return s; });
     try { if (v.webkitDisplayingFullscreen) v.webkitExitFullscreen(); else if (document.fullscreenElement) document.exitFullscreen(); } catch (e) {}
     $("watchHint").textContent = "Unlocked! Here comes the question…";
     renderSteps(); renderBar();
@@ -355,7 +360,9 @@ async function boot() {
   }
 
   // ---------- 2. ANSWER ----------
+  const sig = () => STEPS.map(x => (isDone(x.k) ? 1 : 0) + "" + (isOpen(x.k) ? 1 : 0)).join("");
   function syncDay(s) {
+    const was = sig(), hadAns = !!answeredLocal;
     const d = s.days && s.days[String(L.day)];
     if (d && d.watched && !finished) { finished = true; store(ukey, d.watched); }
     if (d && d.pick && !answeredLocal) {
@@ -367,8 +374,11 @@ async function boot() {
       if (n > st.res.length) { st.res = RAPID.map((_, k) => d.rapid[k]).slice(0, n).map(Boolean); st.i = Math.max(st.i, n); st.started = true; store(rkey, st); }
     }
     if (d && d.bonus) store("blitz_bonus_" + L.day, 1);
+    if (sig() === was) { renderSteps(); renderBar(); return; }
     const first = STEPS.find(s => !isDone(s.k) && isOpen(s.k));
-    if (!STATE.userNav && first && first.k !== cur) go(first.k); else if (cur) go(cur, null, true); else renderSteps();
+    if (!STATE.userNav && first && first.k !== cur) go(first.k);
+    else if (cur === "answer" && !hadAns && answeredLocal) go(cur, null, true);
+    else { renderSteps(); renderBar(); }
   }
   function showQuestion() {
     $("qcard").innerHTML = `<p class="q">${esc(q.prompt)}</p>
@@ -377,7 +387,8 @@ async function boot() {
       `<div id="res"></div>`;
     $("qcard").querySelectorAll(".choice").forEach(b => b.onclick = () => answer(+b.dataset.i));
     if (answeredLocal) { reveal(answeredLocal.pick, false); return; }
-    const t = setInterval(() => {
+    clearInterval(STATE.qTimer);
+    const t = STATE.qTimer = setInterval(() => {
       const left = 90 - Math.floor((Date.now() - (unlockedAt || Date.now())) / 1000);
       if (!$("secs") || answeredLocal) return clearInterval(t);
       if (left <= 0) { $("speed").textContent = "speed bonus over — still worth it!"; clearInterval(t); }
@@ -391,8 +402,11 @@ async function boot() {
     const right = i === q.a;
     track("A" + "ABCD"[i] + (right ? "+" : "-"));
     reveal(i, true); renderSteps(); renderBar();
-    const before = (STATE.stats || store("blitz_stats") || {}).xp || 0;
-    const s = await call("answered", { pick: "ABCD"[i] + ": " + q.choices[i], correct: right ? "yes" : "no", answer: "ABCD"[q.a] + ": " + q.choices[q.a] });
+    const tapXp = (STATE.stats || store("blitz_stats") || {}).xp || 0;
+    const sP = call("answered", { pick: "ABCD"[i] + ": " + q.choices[i], correct: right ? "yes" : "no", answer: "ABCD"[q.a] + ": " + q.choices[q.a] });
+    const w = await (STATE.watchP || null);
+    const before = w && typeof w.xp === "number" ? Math.max(w.xp, tapXp) : tapXp;
+    const s = await sP;
     if (s) {
       renderPlayer(s);
       const gained = s.xp - before;
@@ -421,6 +435,7 @@ async function boot() {
   function renderRapid() {
     if (!RAPID.length) { $("rapid").innerHTML = `<div class="big">No Rapid Fire today</div>`; return; }
     const st = rstate();
+    if (st.res.length > st.i) { st.i = Math.min(st.res.length, RAPID.length); store(rkey, st); renderSteps(); renderBar(); }
     if (st.i >= RAPID.length) return rapidDone(st);
     if (!st.started) { st.started = true; store(rkey, st); }
     const r = RAPID[st.i];
@@ -472,9 +487,9 @@ async function boot() {
     </div>` : "";
     renderWrap();
     if (!quest) return;
-    const QUEST_SECS = 180, key = "blitz_qopen_" + L.day, btn = $("qDone");
+    const QUEST_SECS = 180, key = "blitz_qopen_" + L.day, btn = $("qDone"), gen = STATE.qGen = (STATE.qGen || 0) + 1;
     function tickQuest() {
-      if (done || !$("qDone")) return;
+      if (done || !$("qDone") || gen !== STATE.qGen) return;
       const t0 = store(key);
       if (!t0) { btn.textContent = "I did it!"; return; }
       const left = QUEST_SECS - Math.floor((Date.now() - t0) / 1000);
