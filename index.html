@@ -12,83 +12,138 @@
   body { margin:0; background:linear-gradient(#0e1230,#280e46) fixed; color:#fff; min-height:100vh;
          font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif; }
   body.boss { background:linear-gradient(#2a0a14,#4a0d1e) fixed; }
-  header { display:flex; justify-content:space-between; align-items:center; padding:14px 16px 4px; max-width:520px; margin:0 auto; }
-  .logo { color:var(--y); font-weight:900; font-size:22px; letter-spacing:.5px; }
-  #fbBtn { background:rgba(255,255,255,.1); border:0; color:var(--soft); font-size:15px; width:32px; height:32px; border-radius:50%; cursor:pointer; }
-  main { max-width:520px; margin:0 auto; padding:4px 14px 40px; }
-  .card { background:var(--card); border-radius:18px; padding:16px; margin-top:14px; }
-  /* player card */
-  .player { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; align-items:center; }
-  .rankicon { font-size:44px; grid-row:span 2; }
-  .rankname { font-weight:900; font-size:20px; }
-  .rankname small { color:var(--soft); font-weight:600; font-size:14px; }
-  .bar { height:12px; background:rgba(255,255,255,.12); border-radius:8px; overflow:hidden; }
-  .bar > i { display:block; height:100%; background:linear-gradient(90deg,var(--y),var(--o)); border-radius:8px; transition:width 1s ease; }
-  .stats { display:flex; gap:8px; margin-top:12px; }
-  .stat { flex:1; background:var(--card2); border-radius:12px; padding:8px 6px; text-align:center; }
-  .stat b { display:block; font-size:19px; }
-  .stat span { font-size:11px; color:var(--soft); text-transform:uppercase; letter-spacing:.5px; }
-  .badges { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
-  .badge { background:rgba(255,214,64,.14); color:var(--y); border-radius:20px; padding:4px 10px; font-size:13px; font-weight:700; }
-  h1 { font-size:21px; margin:16px 4px 10px; }
-  .bossbanner { background:var(--r); color:#fff; font-weight:900; text-align:center; border-radius:14px; padding:10px; margin-top:14px; letter-spacing:1px; animation:pulse 1.2s infinite; }
+  button { font:inherit; }
+  /* top bar */
+  header { position:sticky; top:0; z-index:5; background:rgba(14,18,48,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+  .top { display:flex; align-items:center; gap:8px; padding:10px 14px; max-width:520px; margin:0 auto; }
+  .logo { color:var(--y); font-weight:900; font-size:19px; letter-spacing:.5px; margin-right:auto; }
+  .chip { background:rgba(255,255,255,.1); border:0; color:#fff; font-weight:800; font-size:14px; padding:7px 11px; border-radius:20px; cursor:pointer; white-space:nowrap; }
+  /* stepper */
+  .steps { display:flex; gap:6px; padding:2px 14px 10px; max-width:520px; margin:0 auto; }
+  .step { flex:1; border:0; border-radius:12px; padding:7px 2px 6px; background:rgba(255,255,255,.07); color:var(--soft); cursor:pointer; text-align:center; position:relative; }
+  .step .si { display:block; font-size:18px; line-height:1.1; }
+  .step .sn { display:block; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.3px; margin-top:2px; }
+  .step.locked { opacity:.45; }
+  .step.done { color:var(--g); }
+  .step.done .si::after { content:"✓"; position:absolute; top:3px; right:6px; font-size:12px; font-weight:900; color:var(--g); }
+  .step.cur { background:#fff; color:#0e1230; opacity:1; box-shadow:0 0 0 3px var(--y) inset; }
+  .step.cur.done .si::after { color:#0e1230; }
+  main { max-width:520px; margin:0 auto; padding:0 14px 120px; }
+  .card { background:var(--card); border-radius:18px; padding:16px; margin-top:12px; }
+  .daytitle { margin:6px 2px 10px; }
+  .daytitle small { display:block; color:var(--soft); font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.5px; }
+  .daytitle b { font-size:22px; }
+  .oldday { display:block; width:100%; border:0; cursor:pointer; text-align:left; background:var(--y); color:#0e1230; border-radius:14px; padding:12px 14px; margin-top:10px; font-weight:800; font-size:16px; }
+  .oldday small { display:block; font-weight:600; font-size:13px; }
+  .bossbanner { background:var(--r); color:#fff; font-weight:900; text-align:center; border-radius:14px; padding:10px; margin-top:10px; letter-spacing:1px; animation:pulse 1.2s infinite; }
   @keyframes pulse { 50% { transform:scale(1.03); } }
-  video { width:100%; border-radius:18px; background:#000; display:block; max-height:72vh; }
-  .locked { color:var(--soft); text-align:center; font-weight:600; }
-  .q { font-size:20px; font-weight:800; margin:0 0 6px; }
+  .screen { display:none; }
+  .screen.on { display:block; animation:fadein .25s ease; }
+  @keyframes fadein { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+  video { width:100%; border-radius:18px; background:#000; display:block; max-height:64vh; }
+  .hint { color:var(--soft); text-align:center; font-size:15px; margin:12px 6px 0; line-height:1.4; }
+  .q { font-size:20px; font-weight:800; margin:0 0 6px; line-height:1.3; }
   .reward { color:var(--y); font-weight:700; font-size:14px; margin-bottom:8px; }
   .reward b { color:#fff; }
-  .choice { display:flex; gap:14px; align-items:center; width:100%; text-align:left; font:inherit; font-size:20px; font-weight:700;
+  .choice { display:flex; gap:14px; align-items:center; width:100%; text-align:left; font-size:20px; font-weight:700;
             color:#fff; padding:14px 16px; margin:8px 0; border-radius:14px; border:3px solid; background:rgba(255,255,255,.06); cursor:pointer; }
   .choice b { font-size:22px; }
   .choice:disabled { cursor:default; opacity:.5; }
   .choice.right { opacity:1; background:rgba(92,235,140,.25); border-color:var(--g) !important; }
   .choice.wrong { opacity:1; background:rgba(255,92,168,.25); }
+  #res, #rapid, #quest { scroll-margin-top:120px; }
   .result { font-size:24px; font-weight:900; margin:14px 0 6px; }
   .xpgain { display:inline-block; color:var(--y); font-weight:900; font-size:22px; animation:pop .6s ease; }
   @keyframes pop { 0% { transform:scale(.3); opacity:0 } 70% { transform:scale(1.3) } 100% { transform:scale(1); opacity:1 } }
   .explain { color:var(--soft); font-size:17px; line-height:1.45; }
-  .quest h3 { margin:0 0 6px; color:var(--y); font-size:18px; }
-  .quest p { margin:0 0 10px; color:var(--soft); font-size:15px; line-height:1.4; }
-  .btn { display:inline-block; font:inherit; font-weight:800; font-size:16px; padding:11px 16px; border-radius:12px; border:0; cursor:pointer; text-decoration:none; margin:4px 6px 4px 0; }
-  .btn.go { background:var(--c); color:#0e1230; }
-  .btn.done { background:var(--g); color:#0e1230; }
-  .btn:disabled { opacity:.4; cursor:default; }
-  .res a { color:var(--c); }
-  .res li { margin:6px 0; color:var(--soft); font-size:15px; }
-  .past { margin-top:20px; color:var(--soft); font-size:14px; text-align:center; }
-  .past a { color:var(--c); }
-  .err { text-align:center; padding:40px 10px; color:var(--soft); }
-  #fb { position:fixed; top:54px; right:12px; width:min(300px,90vw); background:var(--card2); border-radius:14px; padding:12px; box-shadow:0 8px 30px rgba(0,0,0,.5); display:none; z-index:9; }
-  #fb textarea { width:100%; height:80px; border-radius:10px; border:0; padding:8px; font:inherit; font-size:15px; }
-  .rfbtn { display:block; width:100%; margin-top:14px; font:inherit; font-size:20px; font-weight:900; color:#0e1230; background:linear-gradient(90deg,var(--y),var(--o));
-           border:0; border-radius:16px; padding:16px; cursor:pointer; animation:pulse 1.2s infinite; }
   .rfhead { display:flex; justify-content:space-between; color:var(--y); font-weight:900; font-size:15px; margin-bottom:8px; letter-spacing:.5px; }
   .rfdots { display:flex; gap:6px; margin-bottom:12px; }
   .rfdots i { flex:1; height:6px; border-radius:4px; background:rgba(255,255,255,.15); }
   .rfdots i.ok { background:var(--g); } .rfdots i.no { background:var(--p); } .rfdots i.cur { background:var(--y); }
-  .rfwhy { color:var(--soft); font-size:16px; margin-top:8px; min-height:22px; }
-  .rfdone { text-align:center; font-size:22px; font-weight:900; }
-  .prog summary { cursor:pointer; font-weight:800; color:var(--c); list-style:none; }
-  .prog summary::-webkit-details-marker { display:none; }
+  .rfwhy { color:var(--soft); font-size:16px; margin-top:8px; min-height:22px; line-height:1.4; }
+  .big { text-align:center; font-size:22px; font-weight:900; margin:6px 0; }
+  .quest h3 { margin:0 0 6px; color:var(--y); font-size:18px; }
+  .quest p { margin:0 0 10px; color:var(--soft); font-size:15px; line-height:1.4; }
+  .btn { display:inline-block; font-weight:800; font-size:16px; padding:12px 16px; border-radius:12px; border:0; cursor:pointer; text-decoration:none; margin:4px 6px 4px 0; }
+  .btn.go { background:var(--c); color:#0e1230; }
+  .btn.done { background:var(--g); color:#0e1230; }
+  .btn.ghost { background:rgba(255,255,255,.1); color:#fff; }
+  .btn:disabled { opacity:.4; cursor:default; }
+  .btn.wide { display:block; width:100%; margin:12px 0 0; text-align:center; font-size:18px; }
+  .res a { color:var(--c); }
+  .res li { margin:6px 0; color:var(--soft); font-size:15px; }
+  .err { text-align:center; padding:40px 10px; color:var(--soft); }
+  .tick { display:flex; gap:10px; justify-content:center; margin:10px 0 4px; font-size:15px; font-weight:800; flex-wrap:wrap; }
+  .tick span { background:rgba(255,255,255,.08); padding:6px 10px; border-radius:20px; }
+  .tick span.ok { color:var(--g); }
+  /* bottom action bar */
+  #bar { position:fixed; left:0; right:0; bottom:0; z-index:6; padding:10px 14px calc(10px + env(safe-area-inset-bottom)); background:linear-gradient(transparent,rgba(14,18,48,.95) 30%); display:none; }
+  #bar button { display:block; width:100%; max-width:492px; margin:0 auto; border:0; border-radius:16px; padding:16px; font-size:19px; font-weight:900; cursor:pointer;
+                color:#0e1230; background:var(--c); box-shadow:0 6px 20px rgba(0,0,0,.4); }
+  #bar button.wait { background:#2b3170; color:var(--soft); box-shadow:none; font-size:16px; font-weight:800; }
+  #bar button.pulse { animation:pulse 1.2s infinite; }
+  /* sheets (me / feedback) */
+  .sheet { position:fixed; inset:0; z-index:9; background:rgba(0,0,0,.55); display:none; align-items:flex-end; justify-content:center; }
+  .sheet.on { display:flex; }
+  .panel { background:var(--card2); width:100%; max-width:520px; max-height:88vh; overflow:auto; border-radius:20px 20px 0 0; padding:16px 16px calc(20px + env(safe-area-inset-bottom)); }
+  .panel h2 { margin:0 0 10px; font-size:19px; display:flex; justify-content:space-between; align-items:center; }
+  .panel h2 button { background:rgba(255,255,255,.12); border:0; color:#fff; border-radius:50%; width:34px; height:34px; font-size:16px; cursor:pointer; }
+  .player { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; align-items:center; }
+  .rankicon { font-size:44px; grid-row:span 2; }
+  .rankname { font-weight:900; font-size:20px; }
+  .rankname small { display:block; color:var(--soft); font-weight:600; font-size:14px; }
+  .xbar { height:12px; background:rgba(255,255,255,.12); border-radius:8px; overflow:hidden; }
+  .xbar > i { display:block; height:100%; background:linear-gradient(90deg,var(--y),var(--o)); border-radius:8px; transition:width 1s ease; }
+  .stats { display:flex; gap:8px; margin-top:12px; }
+  .stat { flex:1; background:var(--card); border-radius:12px; padding:8px 6px; text-align:center; }
+  .stat b { display:block; font-size:19px; }
+  .stat span { font-size:11px; color:var(--soft); text-transform:uppercase; letter-spacing:.5px; }
+  .badges { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
+  .badge { background:rgba(255,214,64,.14); color:var(--y); border-radius:20px; padding:4px 10px; font-size:13px; font-weight:700; }
   .prog svg { width:100%; height:auto; display:block; margin-top:8px; }
   .prog .cap { color:var(--soft); font-size:12px; margin-top:4px; }
+  .sub { color:var(--y); font-weight:900; font-size:15px; margin:18px 0 6px; }
+  .days a { display:flex; justify-content:space-between; background:var(--card); color:#fff; text-decoration:none; padding:12px 14px; border-radius:12px; margin:6px 0; font-weight:700; }
+  .days a span { color:var(--soft); font-weight:600; }
+  .days a.here { outline:2px solid var(--y); }
+  #fbText { width:100%; height:90px; border-radius:10px; border:0; padding:10px; font:inherit; font-size:16px; }
   #confetti { position:fixed; inset:0; pointer-events:none; z-index:8; }
+  #toast { position:fixed; top:110px; left:50%; transform:translateX(-50%); background:var(--y); color:#0e1230; font-weight:800; padding:10px 16px; border-radius:12px; z-index:10; display:none; max-width:90vw; text-align:center; }
 </style>
 </head>
 <body>
-<header><div class="logo">MATH BLITZ</div><button id="fbBtn" title="Send Dad a note" aria-label="Feedback">💬</button></header>
-<div id="fb"><div style="font-weight:700;margin-bottom:6px">Message Dad (too hard? too easy? idea?)</div>
-  <textarea id="fbText" maxlength="500"></textarea>
-  <button class="btn go" id="fbSend">Send</button> <button class="btn" id="fbClose" style="background:transparent;color:var(--soft)">Close</button></div>
-<canvas id="confetti"></canvas>
+<header>
+  <div class="top">
+    <div class="logo">MATH BLITZ</div>
+    <button class="chip" id="meBtn" aria-label="My stats">🥉 0 XP · 🔥0</button>
+    <button class="chip" id="fbBtn" aria-label="Message Dad">💬 Dad</button>
+  </div>
+  <nav class="steps" id="steps"></nav>
+</header>
 <main id="app"><div class="err">Loading…</div></main>
+<div id="bar"><button id="barBtn"></button></div>
+<div class="sheet" id="me"><div class="panel">
+  <h2>My stats <button data-close="me" aria-label="Close">✕</button></h2>
+  <div id="player"></div>
+  <div class="prog" id="prog"></div>
+  <div class="sub">All days</div>
+  <div class="days" id="days"></div>
+</div></div>
+<div class="sheet" id="fb"><div class="panel">
+  <h2>Message Dad <button data-close="fb" aria-label="Close">✕</button></h2>
+  <div class="hint" style="text-align:left;margin:0 0 8px">Too hard? Too easy? Something confusing? Idea?</div>
+  <textarea id="fbText" maxlength="500"></textarea>
+  <button class="btn go wide" id="fbSend">Send to Dad</button>
+</div></div>
+<div id="toast"></div>
+<canvas id="confetti"></canvas>
 <script>
 // Google Apps Script web app: emails Dad + keeps the scoreboard (XP, rank, streak, level).
 const ALERT_URL = "https://script.google.com/macros/s/AKfycbwi8toY4bETKFGywU8t8eAl2LOSchAdlHU1m-JiuRRESZea-6l0OdJQe1AooF29_TNN/exec";
-const LIVE = ALERT_URL && !ALERT_URL.startsWith("__");
+const LIVE = ALERT_URL && !ALERT_URL.startsWith("__") && !/[?&]test=1/.test(location.search);
 const COLORS = ["--c","--g","--o","--p"];
 const RANKS = [{at:0,name:"Rookie",icon:"🥉"},{at:250,name:"Starter",icon:"🥈"},{at:750,name:"All-Star",icon:"🥇"},{at:1500,name:"MVP",icon:"🏆"},{at:3000,name:"Legend",icon:"👑"},{at:5000,name:"Hall of Fame",icon:"💎"}];
+const STEPS = [{k:"watch",n:"Watch",i:"▶️",c:"W"},{k:"answer",n:"Answer",i:"🎯",c:"A"},{k:"rapid",n:"Rapid Fire",i:"⚡",c:"R"},{k:"bonus",n:"Bonus",i:"⭐",c:"B"}];
 const STATE = {};
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -102,11 +157,27 @@ async function call(ev, extra) {
     const j = await r.json();
     if (j && typeof j.xp === "number") { store("blitz_stats", j); return j; }
   } catch (e) {
-    // CORS/network failure: fire-and-forget so Dad still gets the email
     if (ev !== "stats") try { fetch(ALERT_URL + "?" + p.toString(), { mode: "no-cors", keepalive: true }); } catch (e2) {}
   }
   return null;
 }
+
+// ---------- tap trail: what he taps, sent once when he leaves the page ----------
+// Logged as a "started" row with "ux" in the % column (no email, no XP effect) so Claude can see where he gets stuck.
+const T0 = Date.now(); let TRAIL = [], SENT = 0;
+function track(code) { TRAIL.push(code + "@" + Math.round((Date.now() - T0) / 1000)); if (/^[ns]/.test(code)) STATE.userNav = true; }
+function flush() {
+  if (!LIVE || TRAIL.length <= SENT) return;
+  const secs = Math.round((Date.now() - T0) / 1000);
+  const s = (TRAIL.slice(SENT).join(".") + "|" + secs + "s").slice(-180);
+  SENT = TRAIL.length;
+  for (let i = 0; i < s.length; i += 60 * 2) {
+    const p = new URLSearchParams({ ev: "started", day: STATE.day || 0, title: STATE.title || "", pct: "ux", pick: s.slice(i, i + 60), answer: s.slice(i + 60, i + 120) });
+    try { fetch(ALERT_URL + "?" + p.toString(), { mode: "no-cors", keepalive: true }); } catch (e) {}
+  }
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flush(); });
+addEventListener("pagehide", flush);
 
 // Math Level (1–10) as an approximate school grade: 1 ≈ 6th, 10 ≈ 12th / 1600-ready (same formula as the scoreboard)
 const gradeOf = l => Math.round((6 + (l - 1) * 6 / 9) * 10) / 10;
@@ -126,8 +197,7 @@ function renderProgress(s) {
   const line = pts.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.g).toFixed(1)}`).join(" ");
   const last = pts[pts.length - 1];
   const ahead = Math.round((last.g - grade) * 10) / 10;
-  box.style.display = "";
-  box.innerHTML = `<details><summary>📈 Your climb to 1600 · working at grade ${last.g} ${ahead >= 0 ? `(+${ahead} ahead of ${ord(grade)})` : `(${ahead} vs ${ord(grade)})`}</summary>
+  box.innerHTML = `<div class="sub">📈 Your climb to 1600 · grade ${last.g} ${ahead >= 0 ? `(+${ahead} ahead of ${ord(grade)})` : `(${ahead} vs ${ord(grade)})`}</div>
     <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Math level as grade level over time">
       ${grid}
       <line x1="${L}" x2="${W - R}" y1="${y(12)}" y2="${y(12)}" stroke="#ffd640" stroke-dasharray="5 4" stroke-width="1.5"/>
@@ -139,7 +209,7 @@ function renderProgress(s) {
       <text x="${L}" y="${H - 6}" fill="#8e96c6" font-size="10">Day ${pts[0].day}</text>
       ${pts.length > 1 ? `<text x="${W - R}" y="${H - 6}" fill="#8e96c6" font-size="10" text-anchor="end">Day ${last.day}</text>` : ""}
     </svg>
-    <div class="cap">Your Math Level shown as a school grade (approximate). Get to the gold line and you're 1600-ready.</div></details>`;
+    <div class="cap">Your Math Level shown as a school grade (approximate). Get to the gold line and you're 1600-ready.</div>`;
 }
 
 function renderPlayer(s) {
@@ -148,11 +218,12 @@ function renderPlayer(s) {
   RANKS.forEach((r, i) => { if (s.xp >= r.at) { rank = r; next = RANKS[i + 1] || null; } });
   const pct = next ? Math.round(100 * (s.xp - rank.at) / (next.at - rank.at)) : 100;
   const prize = next && STATE.prizes && STATE.prizes[next.name] ? ` · prize: ${esc(STATE.prizes[next.name])}` : "";
+  $("meBtn").textContent = `${rank.icon} ${s.xp} XP · 🔥${s.streak}`;
   $("player").innerHTML = `
     <div class="player">
       <div class="rankicon">${rank.icon}</div>
       <div class="rankname">${rank.name} <small>${s.xp} XP${next ? ` · ${next.at - s.xp} to ${next.icon} ${next.name}${prize}` : " · MAX RANK"}</small></div>
-      <div class="bar"><i style="width:${pct}%"></i></div>
+      <div class="xbar"><i style="width:${pct}%"></i></div>
     </div>
     <div class="stats">
       <div class="stat"><b>🔥 ${s.streak}</b><span>day streak</span></div>
@@ -161,85 +232,166 @@ function renderPlayer(s) {
     </div>
     ${s.badges && s.badges.length ? `<div class="badges">${s.badges.map(b => `<span class="badge">${esc(b)}</span>`).join("")}</div>` : ""}`;
   try { renderProgress(s); } catch (e) {}
+  STATE.stats = s;
+  if (STATE.renderDays) STATE.renderDays();
 }
+
+function toast(msg, ms) { const t = $("toast"); t.textContent = msg; t.style.display = "block"; clearTimeout(toast.h); toast.h = setTimeout(() => t.style.display = "none", ms || 2200); }
+function openSheet(id, code) { $(id).classList.add("on"); track(code); }
+document.querySelectorAll("[data-close]").forEach(b => b.onclick = () => $(b.dataset.close).classList.remove("on"));
+document.querySelectorAll(".sheet").forEach(s => s.addEventListener("click", e => { if (e.target === s) s.classList.remove("on"); }));
+$("meBtn").onclick = () => openSheet("me", "me");
+$("fbBtn").onclick = () => openSheet("fb", "fb");
+$("fbSend").onclick = () => {
+  const t = $("fbText").value.trim(); if (!t) return;
+  call("feedback", { pick: t.slice(0, 500) }); $("fbText").value = ""; $("fb").classList.remove("on"); toast("Sent to Dad 👍"); track("fbs");
+};
+// next video time: 7am on weekdays, 10am on weekends (Eastern)
+function nextDrop() { const d = new Date(Date.now() + 86400000).getDay(); return (d === 0 || d === 6) ? "10am" : "7am"; }
 
 async function boot() {
   const app = $("app");
   let man;
   try { man = await (await fetch("lessons.json", { cache: "no-store" })).json(); }
   catch (e) { app.innerHTML = '<div class="err">Couldn\'t load today\'s video. Try again in a minute.</div>'; return; }
+  const latest = man.days[man.days.length - 1];
   const want = parseInt(new URLSearchParams(location.search).get("d") || "0", 10);
-  const L = man.days.find(x => x.day === want) || man.days[man.days.length - 1];
-  const boss = !!L.boss;
+  const L = man.days.find(x => x.day === want) || latest;
+  const boss = !!L.boss, mult = boss ? 2 : 1;
   Object.assign(STATE, { day: L.day, title: L.title, prizes: man.prizes || {} });
   if (boss) document.body.classList.add("boss");
   const q = JSON.parse(atob(L.q));
-  const mult = boss ? 2 : 1;
   const RAPID = (L.rapid || []).map(x => JSON.parse(atob(x)));
-  const rkey = "blitz_rapid_" + L.day;
+  const rkey = "blitz_rapid_" + L.day, ukey = "blitz_unl_" + L.day;
 
   app.innerHTML = `
-    <div class="card" id="player"></div>
-    <div class="card prog" id="prog" style="display:none"></div>
+    ${L.day < latest.day ? `<button class="oldday" id="oldBtn">This is an old one (Day ${L.day}). Today's Blitz is Day ${latest.day} ➜<small>Tap to go to today</small></button>` : ""}
     ${boss ? `<div class="bossbanner">⚔️ BOSS BATTLE · DOUBLE XP ⚔️</div>` : ""}
-    <h1>Day ${L.day}: ${esc(L.title)}</h1>
-    <video id="v" src="${L.video}" ${L.poster ? `poster="${L.poster}"` : ""} controls playsinline preload="auto"></video>
-    <div class="card" id="qcard"><div class="locked">🔒 Finish the video to unlock today's challenge (+${25 * mult} XP)</div></div>
-    <div id="rapid"></div>
-    <div id="quest"></div>
-    <div class="past">${man.days.length > 1 ? "Rewatch: " + man.days.slice(-7).filter(x => x.day !== L.day).map(x => `<a href="?d=${x.day}">Day ${x.day}</a>`).join(" · ") : ""}</div>`;
+    <div class="daytitle"><small>Day ${L.day}${L.day === latest.day ? " · today" : ""}</small><b>${esc(L.title)}</b></div>
+    <section class="screen" id="s-watch">
+      <video id="v" src="${L.video}" ${L.poster ? `poster="${L.poster}"` : ""} controls playsinline preload="auto"></video>
+      <div class="hint" id="watchHint"></div>
+    </section>
+    <section class="screen" id="s-answer"><div class="card" id="qcard"></div></section>
+    <section class="screen" id="s-rapid"><div class="card" id="rapid"></div></section>
+    <section class="screen" id="s-bonus"><div id="quest"></div><div class="card" id="wrap"></div></section>`;
+  if ($("oldBtn")) $("oldBtn").onclick = () => { track("OLD"); flush(); location.href = "?d=" + latest.day; };
+
+  STATE.renderDays = () => {
+    const s = STATE.stats || {};
+    $("days").innerHTML = man.days.slice().reverse().map(x => {
+      const d = s.days && s.days[String(x.day)];
+      const mark = d && d.pick ? (d.correct ? "✅" : "❌") : "";
+      return `<a href="?d=${x.day}" class="${x.day === L.day ? "here" : ""}" data-d="${x.day}">Day ${x.day} · ${esc(x.title)} <span>${x.day === latest.day ? "today " : ""}${mark}</span></a>`;
+    }).join("");
+    $("days").querySelectorAll("a").forEach(a => a.onclick = () => { track("p" + a.dataset.d); flush(); });
+  };
   renderPlayer();
   call("stats").then(s => { if (s) { renderPlayer(s); syncDay(s); } });
 
+  // ---------- progress through the four steps ----------
+  let cur = null, answeredLocal = store("blitz_ans_" + L.day), unlockedAt = store(ukey) || 0;
+  let finished = !!answeredLocal || !!unlockedAt;
+  const rstate = () => store(rkey) || { i: 0, res: [] };
+  const isDone = k => k === "watch" ? finished : k === "answer" ? !!answeredLocal
+    : k === "rapid" ? (RAPID.length ? rstate().i >= RAPID.length : !!answeredLocal) : !!store("blitz_bonus_" + L.day);
+  const isOpen = k => k === "watch" || (k === "answer" ? finished : !!answeredLocal);
+  const lockMsg = { answer: "🔒 Watch the video to the end first", rapid: "🔒 Answer today's question first", bonus: "🔒 Answer today's question first" };
+
+  function renderSteps() {
+    $("steps").innerHTML = STEPS.map(s => `<button class="step ${isDone(s.k) ? "done" : ""} ${isOpen(s.k) ? "" : "locked"} ${cur === s.k ? "cur" : ""}" data-k="${s.k}">
+      <span class="si">${isOpen(s.k) ? s.i : "🔒"}</span><span class="sn">${s.n}</span></button>`).join("");
+    $("steps").querySelectorAll(".step").forEach(b => b.onclick = () => {
+      const k = b.dataset.k, c = STEPS.find(s => s.k === k).c;
+      if (!isOpen(k)) { track("L" + c); toast(lockMsg[k]); return; }
+      go(k, "s");
+    });
+  }
+  function go(k, src, keepScroll) {
+    if (k !== "watch" && !$("v").paused) $("v").pause();
+    cur = k; store("blitz_step_" + L.day, k);
+    document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === "s-" + k));
+    if (src) track(src + STEPS.find(s => s.k === k).c);
+    if (k === "answer") showQuestion();
+    if (k === "rapid") renderRapid();
+    if (k === "bonus") renderBonus();
+    renderSteps(); renderBar();
+    if (!keepScroll) scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function bar(text, fn, wait) {
+    const b = $("barBtn");
+    if (!text) { $("bar").style.display = "none"; return; }
+    $("bar").style.display = "block"; b.textContent = text; b.className = wait ? "wait" : "pulse";
+    b.onclick = () => { if (fn) fn(); };
+  }
+  function renderBar() {
+    if (cur === "watch") {
+      if (finished) bar(answeredLocal ? "Next: ⚡ Rapid Fire ➜" : "Next: 🎯 Answer the question ➜", () => go(answeredLocal ? "rapid" : "answer", "n"));
+      else bar("🔒 Watch to the end to unlock the question", () => { track("LW"); const v = $("v"); if (v.paused) v.play().catch(() => {}); }, true);
+    } else if (cur === "answer") {
+      bar(answeredLocal ? (RAPID.length ? `Next: ⚡ Rapid Fire · ${RAPID.length} questions ➜` : "Next: ⭐ Bonus Quest ➜") : "", () => go(RAPID.length ? "rapid" : "bonus", "n"));
+    } else if (cur === "rapid") {
+      bar(isDone("rapid") ? "Next: ⭐ Bonus Quest ➜" : "", () => go("bonus", "n"));
+    } else bar("");
+  }
+
+  // ---------- 1. WATCH ----------
   const v = $("v");
-  let started = false, finished = false, maxT = 0, unlockedAt = 0, answeredLocal = store("blitz_ans_" + L.day);
-  v.addEventListener("play", () => { if (!started) { started = true; call("started"); } });
+  let started = false, maxT = 0;
+  v.addEventListener("play", () => { track("vp"); if (!started) { started = true; call("started"); } });
   v.addEventListener("timeupdate", () => {
     if (!v.seeking && v.currentTime > maxT && v.currentTime - maxT < 2) maxT = v.currentTime;
     if (!finished && v.duration && maxT / v.duration > 0.9) unlock();
   });
-  v.addEventListener("ended", unlock);
-
+  v.addEventListener("seeked", () => { if (!finished && v.currentTime - maxT > 3) { track("vs"); toast("No skipping ahead 😉 Watch it all to unlock the question", 3000); } });
+  v.addEventListener("ended", () => { if (!finished && maxT / (v.duration || 1) > 0.9) unlock(); });
   function unlock() {
-    if (finished) return; finished = true; unlockedAt = Date.now();
+    if (finished) return; finished = true; unlockedAt = Date.now(); store(ukey, unlockedAt); track("vd");
     call("watched", { pct: v.duration ? Math.round(100 * maxT / v.duration) : 100 });
     try { if (v.webkitDisplayingFullscreen) v.webkitExitFullscreen(); else if (document.fullscreenElement) document.exitFullscreen(); } catch (e) {}
-    showQuestion();
-    setTimeout(() => $("qcard").scrollIntoView({ behavior: "smooth", block: "start" }), 300);
+    $("watchHint").textContent = "Unlocked! Here comes the question…";
+    renderSteps(); renderBar();
+    setTimeout(() => { if (cur === "watch" && !answeredLocal) go("answer", "x"); }, 900);
   }
+
+  // ---------- 2. ANSWER ----------
   function syncDay(s) {
     const d = s.days && s.days[String(L.day)];
+    if (d && d.watched && !finished) { finished = true; store(ukey, d.watched); }
     if (d && d.pick && !answeredLocal) {
       const i = q.choices.findIndex((c, k) => d.pick.startsWith("ABCD"[k] + ":"));
-      if (i >= 0) { answeredLocal = { pick: i }; store("blitz_ans_" + L.day, answeredLocal); finished = true; showQuestion(); }
+      if (i >= 0) { answeredLocal = { pick: i }; store("blitz_ans_" + L.day, answeredLocal); finished = true; }
+    }
+    if (d && d.rapid && RAPID.length) {
+      const st = rstate(), n = Object.keys(d.rapid).length;
+      if (n > st.res.length) { st.res = RAPID.map((_, k) => d.rapid[k]).slice(0, n).map(Boolean); st.i = Math.max(st.i, n); st.started = true; store(rkey, st); }
     }
     if (d && d.bonus) store("blitz_bonus_" + L.day, 1);
-    renderQuest();
+    const first = STEPS.find(s => !isDone(s.k) && isOpen(s.k));
+    if (!STATE.userNav && first && first.k !== cur) go(first.k); else if (cur) go(cur, null, true); else renderSteps();
   }
-  if (answeredLocal) { finished = true; showQuestion(); }
-
   function showQuestion() {
     $("qcard").innerHTML = `<p class="q">${esc(q.prompt)}</p>
       <div class="reward" id="rw">Win <b>+${25 * mult} XP</b> · <span id="speed">⚡ speed bonus +${10 * mult} XP for <b id="secs">90</b>s</span></div>` +
       q.choices.map((c, i) => `<button class="choice" data-i="${i}" style="border-color:var(${COLORS[i]})"><b style="color:var(${COLORS[i]})">${"ABCD"[i]}</b>${esc(c)}</button>`).join("") +
       `<div id="res"></div>`;
-    document.querySelectorAll(".choice").forEach(b => b.onclick = () => answer(+b.dataset.i));
+    $("qcard").querySelectorAll(".choice").forEach(b => b.onclick = () => answer(+b.dataset.i));
     if (answeredLocal) { reveal(answeredLocal.pick, false); return; }
     const t = setInterval(() => {
       const left = 90 - Math.floor((Date.now() - (unlockedAt || Date.now())) / 1000);
       if (!$("secs") || answeredLocal) return clearInterval(t);
-      if (left <= 0) { $("speed").textContent = "speed bonus expired — still worth it!"; clearInterval(t); }
+      if (left <= 0) { $("speed").textContent = "speed bonus over — still worth it!"; clearInterval(t); }
       else $("secs").textContent = left;
     }, 1000);
-    renderQuest();
   }
   async function answer(i) {
     if (answeredLocal) return;
     answeredLocal = { pick: i };
     store("blitz_ans_" + L.day, answeredLocal);
     const right = i === q.a;
-    reveal(i, true);
-    const before = (store("blitz_stats") || {}).xp || 0;
+    track("A" + "ABCD"[i] + (right ? "+" : "-"));
+    reveal(i, true); renderSteps(); renderBar();
+    const before = (STATE.stats || store("blitz_stats") || {}).xp || 0;
     const s = await call("answered", { pick: "ABCD"[i] + ": " + q.choices[i], correct: right ? "yes" : "no", answer: "ABCD"[q.a] + ": " + q.choices[q.a] });
     if (s) {
       renderPlayer(s);
@@ -249,7 +401,7 @@ async function boot() {
   }
   function reveal(i, fresh) {
     const right = i === q.a;
-    document.querySelectorAll(".choice").forEach(b => {
+    $("qcard").querySelectorAll(".choice").forEach(b => {
       const k = +b.dataset.i; b.disabled = true;
       if (k === q.a) b.classList.add("right"); else if (k === i) b.classList.add("wrong");
     });
@@ -257,105 +409,105 @@ async function boot() {
     const cheers = ["NOTHING BUT NET! 🏀", "TOUCHDOWN! 🏈", "GOOOAL! ⚽", "HOME RUN! ⚾", "SLAM DUNK! 🏀", "HAT TRICK! 🏒"];
     $("res").innerHTML = `<div class="result" style="color:var(${right ? "--g" : "--p"})">${right ? (boss ? "BOSS DEFEATED! ⚔️" : cheers[L.day % cheers.length]) : "So close! Here's the play-by-play:"}</div>
       <div id="gain"></div><div class="explain">${esc(q.explain)}</div>
-      ${right ? "" : `<div class="explain" style="margin-top:8px">💪 Tomorrow's video runs this play back so you'll own it.</div>`}`;
+      ${right ? "" : `<div class="explain" style="margin-top:8px">💪 Tomorrow's video runs this play back so you'll own it. Win some XP back in Rapid Fire ⬇️</div>`}`;
     if (right && fresh) confetti();
-    renderRapid(fresh);
-    renderQuest();
+    if (fresh) setTimeout(() => $("res").scrollIntoView({ behavior: "smooth", block: "start" }), 400);
   }
 
-  // ---------- RAPID FIRE: one tap per question, auto-advance ----------
-  function rstate() { return store(rkey) || { i: 0, res: [] }; }
-  function renderRapid(fresh) {
-    const box = $("rapid");
-    if (!RAPID.length || !answeredLocal) { box.innerHTML = ""; return; }
-    const st = rstate();
-    if (st.i >= RAPID.length) return rapidDone(st);
-    if (st.i === 0 && !st.started) {
-      box.innerHTML = `<button class="rfbtn" id="rfGo">⚡ RAPID FIRE: ${RAPID.length} harder questions · +${10 * mult} XP each</button>`;
-      $("rfGo").onclick = () => { st.started = true; store(rkey, st); rapidQ(); };
-      if (fresh) setTimeout(() => box.scrollIntoView({ behavior: "smooth", block: "center" }), 900);
-      return;
-    }
-    rapidQ();
-  }
+  // ---------- 3. RAPID FIRE: one tap per question ----------
   function dots(st) {
     return `<div class="rfdots">${RAPID.map((_, k) => `<i class="${k < st.res.length ? (st.res[k] ? "ok" : "no") : k === st.i ? "cur" : ""}"></i>`).join("")}</div>`;
   }
-  function rapidQ() {
-    const st = rstate(), r = RAPID[st.i];
-    $("rapid").innerHTML = `<div class="card">
-      <div class="rfhead"><span>⚡ RAPID FIRE</span><span>${st.i + 1} / ${RAPID.length}</span></div>${dots(st)}
+  function renderRapid() {
+    if (!RAPID.length) { $("rapid").innerHTML = `<div class="big">No Rapid Fire today</div>`; return; }
+    const st = rstate();
+    if (st.i >= RAPID.length) return rapidDone(st);
+    if (!st.started) { st.started = true; store(rkey, st); }
+    const r = RAPID[st.i];
+    $("rapid").innerHTML = `
+      <div class="rfhead"><span>⚡ RAPID FIRE · +${10 * mult} XP each</span><span>${st.i + 1} / ${RAPID.length}</span></div>${dots(st)}
       <p class="q">${esc(r.prompt)}</p>
       ${r.choices.map((c, k) => `<button class="choice" data-k="${k}" style="border-color:var(${COLORS[k]})"><b style="color:var(${COLORS[k]})">${"ABCD"[k]}</b>${esc(c)}</button>`).join("")}
-      <div class="rfwhy" id="rfwhy"></div></div>`;
-    document.querySelectorAll("#rapid .choice").forEach(b => b.onclick = () => rapidAnswer(+b.dataset.k));
+      <div class="rfwhy" id="rfwhy"></div>`;
+    $("rapid").querySelectorAll(".choice").forEach(b => b.onclick = () => rapidAnswer(+b.dataset.k));
   }
   function rapidAnswer(k) {
     const st = rstate(), r = RAPID[st.i];
-    if (st.res.length > st.i) return; // already answered this one
+    if (st.res.length > st.i) return;
     const ok = k === r.a;
     st.res.push(ok); store(rkey, st);
-    document.querySelectorAll("#rapid .choice").forEach(b => {
+    track("r" + st.i + (ok ? "+" : "-"));
+    $("rapid").querySelectorAll(".choice").forEach(b => {
       const j = +b.dataset.k; b.disabled = true;
       if (j === r.a) b.classList.add("right"); else if (j === k) b.classList.add("wrong");
     });
-    $("rfwhy").innerHTML = ok ? `<span class="xpgain">+${10 * mult} XP</span>` : esc(r.why);
     call("rapid", { idx: st.i, total: RAPID.length, pick: "ABCD"[k] + ": " + r.choices[k], correct: ok ? "yes" : "no", answer: "ABCD"[r.a] + ": " + r.choices[r.a] })
       .then(s => { if (s) renderPlayer(s); });
-    setTimeout(() => { st.i++; store(rkey, st); st.i >= RAPID.length ? rapidDone(st) : rapidQ(); }, ok ? 1100 : 3200);
+    const advance = () => { const s2 = rstate(); if (s2.i === st.i) { s2.i++; store(rkey, s2); } if (cur === "rapid") { renderRapid(); renderSteps(); renderBar(); } };
+    if (ok) { $("rfwhy").innerHTML = `<span class="xpgain">+${10 * mult} XP</span>`; setTimeout(advance, 1000); }
+    else {
+      $("rfwhy").innerHTML = `${esc(r.why)}<button class="btn go wide" id="rfNext">Got it ➜ ${st.i + 1 < RAPID.length ? "next question" : "see my score"}</button>`;
+      $("rfNext").onclick = () => { track("rg"); advance(); };
+    }
   }
   function rapidDone(st) {
     const n = st.res.filter(Boolean).length;
-    const msg = n === RAPID.length ? "PERFECT ROUND! 🔥🔥🔥" : n >= RAPID.length - 1 ? "ALMOST PERFECT! 🔥" : n >= RAPID.length / 2 ? "Solid round! 💪" : "Tough round — tomorrow you get your revenge 💪";
-    $("rapid").innerHTML = `<div class="card">${dots({ i: RAPID.length, res: st.res })}
-      <div class="rfdone">${n} / ${RAPID.length} · ${msg}</div>
-      <div class="explain" style="text-align:center;margin-top:8px">Next video drops tomorrow at 7am ⏰</div></div>`;
-    if (n === RAPID.length) confetti();
+    const msg = n === RAPID.length ? "PERFECT ROUND! 🔥🔥🔥" : n >= RAPID.length - 1 ? "ALMOST PERFECT! 🔥" : n >= RAPID.length / 2 ? "Solid round! 💪" : "Tough round. Tomorrow you get your revenge 💪";
+    $("rapid").innerHTML = `${dots({ i: RAPID.length, res: st.res })}<div class="big">${n} / ${RAPID.length}</div><div class="big" style="font-size:18px">${msg}</div>`;
+    if (n === RAPID.length && !st.party) { st.party = 1; store(rkey, st); confetti(); }
   }
-  function renderQuest() {
+
+  // ---------- 4. BONUS + wrap-up ----------
+  function renderBonus() {
     const res = L.resources || [];
-    if (!finished || !res.length) { $("quest").innerHTML = ""; return; }
     const quest = res.find(r => r.quest) || res[0];
-    const done = store("blitz_bonus_" + L.day);
-    $("quest").innerHTML = `<div class="card quest">
+    const done = !!store("blitz_bonus_" + L.day);
+    $("quest").innerHTML = quest ? `<div class="card quest">
       <h3>⭐ Bonus Quest · +${30 * mult} XP</h3>
       <p>${esc(quest.label)}</p>
-      <a class="btn go" id="qGo" href="${esc(quest.url)}" target="_blank" rel="noopener">${esc(quest.button || "Open practice")}</a>
+      <a class="btn go" id="qGo" href="${esc(quest.url)}" target="_blank" rel="noopener">${esc(quest.button || "Open practice")} ↗</a>
       <button class="btn done" id="qDone" ${done ? "disabled" : ""}>${done ? "✅ Quest complete" : "I did it!"}</button>
-      ${res.length > 1 ? `<ul class="res">${res.filter(r => r !== quest).map(r => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a> — ${esc(r.label)}</li>`).join("")}</ul>` : ""}
-    </div>`;
-    const QUEST_SECS = 180; // must spend at least 3 minutes on the practice
-    const key = "blitz_qopen_" + L.day;
-    const btn = $("qDone");
+      <div class="hint" id="qHint" style="text-align:left;margin-top:6px">${done ? "" : "Open the practice, do a few, then come back and tap “I did it!”"}</div>
+      ${res.length > 1 ? `<ul class="res">${res.filter(r => r !== quest).map(r => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>: ${esc(r.label)}</li>`).join("")}</ul>` : ""}
+    </div>` : "";
+    renderWrap();
+    if (!quest) return;
+    const QUEST_SECS = 180, key = "blitz_qopen_" + L.day, btn = $("qDone");
     function tickQuest() {
-      if (done) return;
+      if (done || !$("qDone")) return;
       const t0 = store(key);
-      if (!t0) { btn.disabled = true; btn.textContent = "Open the practice first"; return; }
+      if (!t0) { btn.textContent = "I did it!"; return; }
       const left = QUEST_SECS - Math.floor((Date.now() - t0) / 1000);
-      if (left > 0) { btn.disabled = true; btn.textContent = `Unlocks in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`; setTimeout(tickQuest, 1000); }
+      if (left > 0) { btn.disabled = true; btn.textContent = `Ready in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`; setTimeout(tickQuest, 1000); }
       else { btn.disabled = false; btn.textContent = "I did it!"; }
     }
-    $("qGo").onclick = () => { if (!store(key)) store(key, Date.now()); setTimeout(tickQuest, 50); };
+    $("qGo").onclick = () => { track("qo"); if (!store(key)) store(key, Date.now()); setTimeout(tickQuest, 50); };
     tickQuest();
     if (!done) btn.onclick = async () => {
       const t0 = store(key);
-      if (!t0 || Date.now() - t0 < QUEST_SECS * 1000) return;
-      store("blitz_bonus_" + L.day, 1);
-      $("qDone").disabled = true; $("qDone").textContent = "✅ Quest complete";
+      if (!t0) { track("qx"); toast("Tap the blue button and practice first 👆"); return; }
+      if (Date.now() - t0 < QUEST_SECS * 1000) return;
+      track("qd"); store("blitz_bonus_" + L.day, 1);
+      btn.disabled = true; btn.textContent = "✅ Quest complete"; $("qHint").textContent = "";
+      renderSteps(); renderWrap();
       const s = await call("bonus", { pick: quest.name });
       if (s) renderPlayer(s);
     };
   }
-}
+  function renderWrap() {
+    const t = STEPS.map(s => `<span class="${isDone(s.k) ? "ok" : ""}">${isDone(s.k) ? "✓" : "○"} ${s.n}</span>`).join("");
+    const all = STEPS.every(s => isDone(s.k));
+    $("wrap").innerHTML = `<div class="big">${all ? "Day " + L.day + " complete! 🏆" : "Today so far"}</div><div class="tick">${t}</div>
+      <div class="hint">${L.day < latest.day ? `Today's Blitz is <a href="?d=${latest.day}" style="color:var(--c)">Day ${latest.day}</a>.` : `Next video drops tomorrow at ${nextDrop()} ⏰`}</div>
+      <button class="btn ghost wide" id="rewatch">🎬 Rewatch the video</button>`;
+    $("rewatch").onclick = () => go("watch", "s");
+  }
 
-// feedback → emails Dad
-$("fbBtn").onclick = () => { $("fb").style.display = $("fb").style.display === "block" ? "none" : "block"; };
-$("fbClose").onclick = () => { $("fb").style.display = "none"; };
-$("fbSend").onclick = () => {
-  const t = $("fbText").value.trim(); if (!t) return;
-  call("feedback", { pick: t.slice(0, 500) }); $("fbText").value = ""; $("fb").style.display = "none"; alertLite("Sent to Dad 👍");
-};
-function alertLite(msg) { const d = document.createElement("div"); d.textContent = msg; d.style.cssText = "position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#5ceb8c;color:#0e1230;font-weight:800;padding:10px 16px;border-radius:12px;z-index:10"; document.body.appendChild(d); setTimeout(() => d.remove(), 2200); }
+  // first screen: the first step he hasn't finished
+  const saved = store("blitz_step_" + L.day);
+  const first = STEPS.find(s => !isDone(s.k) && isOpen(s.k));
+  go(first ? first.k : (saved || "bonus"));
+}
 
 function confetti() {
   const c = $("confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight;
