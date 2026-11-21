@@ -39,6 +39,11 @@ Copy the shape of `engine/lessons/day001.json`:
 4. Update `progress.json`: last_day, topic index, level, history entry (day, topic, result of yesterday, `sent`).
 5. Commit "Day NNN: <title>" and push to main. GitHub Pages republishes in about 1 minute. Confirm https://ldyerstarks.github.io/math-blitz/?d=NNN loads (or wait 60 s and retry once).
 
+## 4a. Make the page easier to use (Dad's request: "iterate as he uses it")
+The page is a 4-step flow: Watch → Answer → Rapid Fire → Bonus, with a stepper at the top and one big Next button at the bottom. It logs his taps as **`started` rows with `ux` in the "% watched" column** (no email, no XP effect). The tap trail is in Picked + Answer, e.g. `vp@3.vd@50.xA@51.AD-@64.nR@70.r0+@75.r1-@82.rg@95|120s` (`@` = seconds since he opened the page; `|120s` = time on page).
+Codes: `vp` play · `vs` tried to skip ahead · `vd` video done · `x`/`n`/`s` + W/A/R/B = went to Watch/Answer/Rapid/Bonus automatically / with the Next button / with the stepper · `L`+letter = tapped a locked step · `A`+letter+`±` = daily answer · `r`N`±` = Rapid Fire answer · `rg` "Got it" after a miss · `qo` opened the quest · `qx` tapped "I did it" before opening · `qd` quest claimed · `me` stats · `p`N past day · `OLD` old-day banner → today · `fb`/`fbs` opened/sent a note to Dad.
+Each run, read yesterday's ux rows and look for friction: locked-step taps, tries to skip, steps he never reached (e.g. answered but no `R`), long gaps, bouncing between steps, old-day visits, notes from Jack. Make **at most one small, safe change** to `index.html` that fixes the clearest problem (wording, button text, which step he lands on, what's shown where). Test it at iPhone size with Playwright using `?test=1` (that turns off all logging so tests never touch his scoreboard), walk the whole flow, look at the screenshots, then commit "Page: <what changed>". Keep the scoreboard rules, XP, prizes, quest lock and the alert script as they are. If there are no ux rows or nothing looks wrong, change nothing. Add one line per change to the "Page changes" list at the end of this file.
+
 ## 4b. Nudge rule ("bug him" — Dad's request)
 From the log sheet, count the released days *before today* in a row (most recent first) with **no `answered` row** — the days he skipped.
 - **0–1 skipped:** normal hype text.
@@ -55,3 +60,6 @@ After a successful send set `sent: true` in progress.json and push. If the send 
 - Text at 7:00 am ET on weekdays and 10:00 am ET on Saturdays and Sundays (Dad's rule): if everything is ready earlier, wait until that time before sending.
 - Stop and email Len instead of publishing if the render fails twice or the math can't be verified.
 - Don't change the alert script, the scoreboard rules, or the prizes; those are Len's calls.
+
+## Page changes
+- 2026-11-21: Redesigned as a 4-step flow with a Next button. Why: on Day 2 he answered, then never found Rapid Fire; 30 min later he opened Day 1 from an old link and did its Rapid Fire there. Now: old-day banner points to today, stepper shows what's done/locked, wrong Rapid Fire answers wait for "Got it" instead of a 3-second timer, stats and past days moved into a sheet behind the XP chip.
