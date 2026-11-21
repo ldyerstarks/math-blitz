@@ -39,6 +39,13 @@ Copy the shape of `engine/lessons/day001.json`:
 4. Update `progress.json`: last_day, topic index, level, history entry (day, topic, result of yesterday, `sent`).
 5. Commit "Day NNN: <title>" and push to main. GitHub Pages republishes in about 1 minute. Confirm https://ldyerstarks.github.io/math-blitz/?d=NNN loads (or wait 60 s and retry once).
 
+## 4b. Nudge rule ("bug him" — Dad's request)
+From the log sheet, count the released days *before today* in a row (most recent first) with **no `answered` row** — the days he skipped.
+- **0–1 skipped:** normal hype text.
+- **2 skipped:** today's text leads with a playful, teasing nudge (never mean or guilt-trippy), e.g. "2 days, no Blitz?! Your streak is on life support 🚑 — 60 seconds to save it" or "Rapid Fire misses you 😤 Dad's prize isn't gonna win itself". Name what's at stake (streak, XP to the next rank, the next prize from engine/config.json). Use send_style "loud". Still only one text per day.
+- **4+ skipped:** same nudge, and also email Len (subject "Math Blitz — Jack has skipped N days") with the dates, so Dad can step in. Don't escalate further on your own.
+- If Pause texts = yes, skip all of this.
+
 ## 5. Text him (Inkbox iMessage, identity @jackiesmath)
 Send to his number (given in the scheduled-task prompt, never written in this repo) with `inkbox_imessage_send`. One short hype line naming today's topic and the XP on the line, then the link `https://ldyerstarks.github.io/math-blitz/?d=NNN`. Boss days: add send_style "fireworks". Never send more than one text per day; never reply to his messages beyond a short friendly acknowledgment, and nothing personal.
 After a successful send set `sent: true` in progress.json and push. If the send fails because he isn't connected, leave `sent: false` and email Len (the Gmail connector account, subject "Math Blitz — couldn't text him today") with the link so he can forward it.
