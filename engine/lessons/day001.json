@@ -118,5 +118,62 @@
       "label": "The free warm-up course built for students starting early.",
       "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
     }
+  ],
+  "rapid": [
+    {
+      "prompt": "−3x + 8 = 29. What is x?",
+      "choices": [
+        "−7",
+        "7",
+        "−12",
+        "12"
+      ],
+      "answer": 0,
+      "why": "Subtract 8: −3x = 21. Divide by −3: x = −7. Watch the sign!"
+    },
+    {
+      "prompt": "x/4 − 6 = 3. What is x?",
+      "choices": [
+        "12",
+        "36",
+        "−12",
+        "9"
+      ],
+      "answer": 1,
+      "why": "Add 6: x/4 = 9. Multiply by 4: x = 36."
+    },
+    {
+      "prompt": "5(x − 2) = 35. What is x?",
+      "choices": [
+        "7",
+        "5",
+        "9",
+        "8"
+      ],
+      "answer": 2,
+      "why": "Divide by 5: x − 2 = 7, so x = 9."
+    },
+    {
+      "prompt": "A gym costs $25 to join plus $15 a month. Jake paid $160 total. How many months?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "12"
+      ],
+      "answer": 1,
+      "why": "15m + 25 = 160 → 15m = 135 → m = 9."
+    },
+    {
+      "prompt": "If 3x + 7 = 22, what is 6x − 1?",
+      "choices": [
+        "30",
+        "9",
+        "29",
+        "44"
+      ],
+      "answer": 2,
+      "why": "SAT shortcut: 3x = 15, so 6x = 30 and 6x − 1 = 29. No need to find x!"
+    }
   ]
 }

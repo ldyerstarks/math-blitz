@@ -61,6 +61,14 @@
   .err { text-align:center; padding:40px 10px; color:var(--soft); }
   #fb { position:fixed; top:54px; right:12px; width:min(300px,90vw); background:var(--card2); border-radius:14px; padding:12px; box-shadow:0 8px 30px rgba(0,0,0,.5); display:none; z-index:9; }
   #fb textarea { width:100%; height:80px; border-radius:10px; border:0; padding:8px; font:inherit; font-size:15px; }
+  .rfbtn { display:block; width:100%; margin-top:14px; font:inherit; font-size:20px; font-weight:900; color:#0e1230; background:linear-gradient(90deg,var(--y),var(--o));
+           border:0; border-radius:16px; padding:16px; cursor:pointer; animation:pulse 1.2s infinite; }
+  .rfhead { display:flex; justify-content:space-between; color:var(--y); font-weight:900; font-size:15px; margin-bottom:8px; letter-spacing:.5px; }
+  .rfdots { display:flex; gap:6px; margin-bottom:12px; }
+  .rfdots i { flex:1; height:6px; border-radius:4px; background:rgba(255,255,255,.15); }
+  .rfdots i.ok { background:var(--g); } .rfdots i.no { background:var(--p); } .rfdots i.cur { background:var(--y); }
+  .rfwhy { color:var(--soft); font-size:16px; margin-top:8px; min-height:22px; }
+  .rfdone { text-align:center; font-size:22px; font-weight:900; }
   #confetti { position:fixed; inset:0; pointer-events:none; z-index:8; }
 </style>
 </head>
@@ -128,6 +136,8 @@ async function boot() {
   if (boss) document.body.classList.add("boss");
   const q = JSON.parse(atob(L.q));
   const mult = boss ? 2 : 1;
+  const RAPID = (L.rapid || []).map(x => JSON.parse(atob(x)));
+  const rkey = "blitz_rapid_" + L.day;
 
   app.innerHTML = `
     <div class="card" id="player"></div>
@@ -135,6 +145,7 @@ async function boot() {
     <h1>Day ${L.day}: ${esc(L.title)}</h1>
     <video id="v" src="${L.video}" ${L.poster ? `poster="${L.poster}"` : ""} controls playsinline preload="auto"></video>
     <div class="card" id="qcard"><div class="locked">🔒 Finish the video to unlock today's challenge (+${25 * mult} XP)</div></div>
+    <div id="rapid"></div>
     <div id="quest"></div>
     <div class="past">${man.days.length > 1 ? "Rewatch: " + man.days.slice(-7).filter(x => x.day !== L.day).map(x => `<a href="?d=${x.day}">Day ${x.day}</a>`).join(" · ") : ""}</div>`;
   renderPlayer();
@@ -152,7 +163,9 @@ async function boot() {
   function unlock() {
     if (finished) return; finished = true; unlockedAt = Date.now();
     call("watched", { pct: v.duration ? Math.round(100 * maxT / v.duration) : 100 });
+    try { if (v.webkitDisplayingFullscreen) v.webkitExitFullscreen(); else if (document.fullscreenElement) document.exitFullscreen(); } catch (e) {}
     showQuestion();
+    setTimeout(() => $("qcard").scrollIntoView({ behavior: "smooth", block: "start" }), 300);
   }
   function syncDay(s) {
     const d = s.days && s.days[String(L.day)];
@@ -206,7 +219,58 @@ async function boot() {
       <div id="gain"></div><div class="explain">${esc(q.explain)}</div>
       ${right ? "" : `<div class="explain" style="margin-top:8px">💪 Tomorrow's video runs this play back so you'll own it.</div>`}`;
     if (right && fresh) confetti();
+    renderRapid(fresh);
     renderQuest();
+  }
+
+  // ---------- RAPID FIRE: one tap per question, auto-advance ----------
+  function rstate() { return store(rkey) || { i: 0, res: [] }; }
+  function renderRapid(fresh) {
+    const box = $("rapid");
+    if (!RAPID.length || !answeredLocal) { box.innerHTML = ""; return; }
+    const st = rstate();
+    if (st.i >= RAPID.length) return rapidDone(st);
+    if (st.i === 0 && !st.started) {
+      box.innerHTML = `<button class="rfbtn" id="rfGo">⚡ RAPID FIRE: ${RAPID.length} harder questions · +${10 * mult} XP each</button>`;
+      $("rfGo").onclick = () => { st.started = true; store(rkey, st); rapidQ(); };
+      if (fresh) setTimeout(() => box.scrollIntoView({ behavior: "smooth", block: "center" }), 900);
+      return;
+    }
+    rapidQ();
+  }
+  function dots(st) {
+    return `<div class="rfdots">${RAPID.map((_, k) => `<i class="${k < st.res.length ? (st.res[k] ? "ok" : "no") : k === st.i ? "cur" : ""}"></i>`).join("")}</div>`;
+  }
+  function rapidQ() {
+    const st = rstate(), r = RAPID[st.i];
+    $("rapid").innerHTML = `<div class="card">
+      <div class="rfhead"><span>⚡ RAPID FIRE</span><span>${st.i + 1} / ${RAPID.length}</span></div>${dots(st)}
+      <p class="q">${esc(r.prompt)}</p>
+      ${r.choices.map((c, k) => `<button class="choice" data-k="${k}" style="border-color:var(${COLORS[k]})"><b style="color:var(${COLORS[k]})">${"ABCD"[k]}</b>${esc(c)}</button>`).join("")}
+      <div class="rfwhy" id="rfwhy"></div></div>`;
+    document.querySelectorAll("#rapid .choice").forEach(b => b.onclick = () => rapidAnswer(+b.dataset.k));
+  }
+  function rapidAnswer(k) {
+    const st = rstate(), r = RAPID[st.i];
+    if (st.res.length > st.i) return; // already answered this one
+    const ok = k === r.a;
+    st.res.push(ok); store(rkey, st);
+    document.querySelectorAll("#rapid .choice").forEach(b => {
+      const j = +b.dataset.k; b.disabled = true;
+      if (j === r.a) b.classList.add("right"); else if (j === k) b.classList.add("wrong");
+    });
+    $("rfwhy").innerHTML = ok ? `<span class="xpgain">+${10 * mult} XP</span>` : esc(r.why);
+    call("rapid", { idx: st.i, total: RAPID.length, pick: "ABCD"[k] + ": " + r.choices[k], correct: ok ? "yes" : "no", answer: "ABCD"[r.a] + ": " + r.choices[r.a] })
+      .then(s => { if (s) renderPlayer(s); });
+    setTimeout(() => { st.i++; store(rkey, st); st.i >= RAPID.length ? rapidDone(st) : rapidQ(); }, ok ? 1100 : 3200);
+  }
+  function rapidDone(st) {
+    const n = st.res.filter(Boolean).length;
+    const msg = n === RAPID.length ? "PERFECT ROUND! 🔥🔥🔥" : n >= RAPID.length - 1 ? "ALMOST PERFECT! 🔥" : n >= RAPID.length / 2 ? "Solid round! 💪" : "Tough round — tomorrow you get your revenge 💪";
+    $("rapid").innerHTML = `<div class="card">${dots({ i: RAPID.length, res: st.res })}
+      <div class="rfdone">${n} / ${RAPID.length} · ${msg}</div>
+      <div class="explain" style="text-align:center;margin-top:8px">Next video drops tomorrow at 7am ⏰</div></div>`;
+    if (n === RAPID.length) confetti();
   }
   function renderQuest() {
     const res = L.resources || [];

@@ -1,6 +1,13 @@
 {
  "days": [
   {
+   "rapid": [
+    "eyJwcm9tcHQiOiAiXHUyMjEyM3ggKyA4ID0gMjkuIFdoYXQgaXMgeD8iLCAiY2hvaWNlcyI6IFsiXHUyMjEyNyIsICI3IiwgIlx1MjIxMjEyIiwgIjEyIl0sICJhIjogMCwgIndoeSI6ICJTdWJ0cmFjdCA4OiBcdTIyMTIzeCA9IDIxLiBEaXZpZGUgYnkgXHUyMjEyMzogeCA9IFx1MjIxMjcuIFdhdGNoIHRoZSBzaWduISJ9",
+    "eyJwcm9tcHQiOiAieC80IFx1MjIxMiA2ID0gMy4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyIxMiIsICIzNiIsICJcdTIyMTIxMiIsICI5Il0sICJhIjogMSwgIndoeSI6ICJBZGQgNjogeC80ID0gOS4gTXVsdGlwbHkgYnkgNDogeCA9IDM2LiJ9",
+    "eyJwcm9tcHQiOiAiNSh4IFx1MjIxMiAyKSA9IDM1LiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIjciLCAiNSIsICI5IiwgIjgiXSwgImEiOiAyLCAid2h5IjogIkRpdmlkZSBieSA1OiB4IFx1MjIxMiAyID0gNywgc28geCA9IDkuIn0=",
+    "eyJwcm9tcHQiOiAiQSBneW0gY29zdHMgJDI1IHRvIGpvaW4gcGx1cyAkMTUgYSBtb250aC4gSmFrZSBwYWlkICQxNjAgdG90YWwuIEhvdyBtYW55IG1vbnRocz8iLCAiY2hvaWNlcyI6IFsiOCIsICI5IiwgIjEwIiwgIjEyIl0sICJhIjogMSwgIndoeSI6ICIxNW0gKyAyNSA9IDE2MCBcdTIxOTIgMTVtID0gMTM1IFx1MjE5MiBtID0gOS4ifQ==",
+    "eyJwcm9tcHQiOiAiSWYgM3ggKyA3ID0gMjIsIHdoYXQgaXMgNnggXHUyMjEyIDE/IiwgImNob2ljZXMiOiBbIjMwIiwgIjkiLCAiMjkiLCAiNDQiXSwgImEiOiAyLCAid2h5IjogIlNBVCBzaG9ydGN1dDogM3ggPSAxNSwgc28gNnggPSAzMCBhbmQgNnggXHUyMjEyIDEgPSAyOS4gTm8gbmVlZCB0byBmaW5kIHghIn0="
+   ],
    "day": 1,
    "title": "The Balance Trick",
    "video": "videos/day001.mp4",

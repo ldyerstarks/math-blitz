@@ -29,6 +29,7 @@ Copy the shape of `engine/lessons/day001.json`:
 - `day`, `title` (punchy, ≤ 22 chars), `topic`, `sat_domain`, `level`, `boss`, `voice: "am_puck"`, `speed: 1.08`
 - `scenes`: title → 2–3 board scenes (each ≤ 4 short lines, ≤ 25 words of narration) → question scene with `hold: 3.0`. Total narration ≈ 110–150 words (45–75 s). Hype sports-announcer voice, kid-friendly, never mean. Say math the way it reads aloud ("four x minus five"). Use − × ÷ characters on screen; avoid emoji and ✔ on screen (the font lacks them).
 - `question`: prompt, choices, `answer` (index), `explain` (one or two sentences, shows after he answers), `trap_notes`.
+- `rapid`: **5 Rapid Fire questions** on today's topic (or the last few days' topics), each `{prompt, choices[4], answer, why}`. Ramp the difficulty: Q1 at his level −0.5, Q2–Q3 at his level, Q4 a word problem at level +0.5, Q5 a stretch at level +1 (SAT-style twist, e.g. "what is 6x − 1" instead of "what is x"). Prompts ≤ 120 characters so they fit a phone; `why` is one short sentence. Verify every answer by computing it in Python. Wrong choices are the classic mistakes.
 - `resources`: ⭐ quest first (`"quest": true`) = Khan Academy search link for the exact topic; then Desmos and/or the right Khan course; Bluebook "Mega Boss" about every 4 weeks once level ≥ 6; AoPS Alcumus at level ≥ 8. Links only.
 
 ## 4. Render, check, publish
