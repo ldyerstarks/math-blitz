@@ -52,6 +52,6 @@ After a successful send set `sent: true` in progress.json and push. If the send 
 
 ## Guardrails
 - Original questions only; never copy Khan/College Board content. Linking is fine.
-- Text at 7:00 am ET: if everything is ready earlier, wait until 7:00 before sending.
+- Text at 7:00 am ET on weekdays and 10:00 am ET on Saturdays and Sundays (Dad's rule): if everything is ready earlier, wait until that time before sending.
 - Stop and email Len instead of publishing if the render fails twice or the math can't be verified.
 - Don't change the alert script, the scoreboard rules, or the prizes; those are Len's calls.
