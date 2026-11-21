@@ -133,7 +133,7 @@ async function boot() {
     <div class="card" id="player"></div>
     ${boss ? `<div class="bossbanner">⚔️ BOSS BATTLE · DOUBLE XP ⚔️</div>` : ""}
     <h1>Day ${L.day}: ${esc(L.title)}</h1>
-    <video id="v" src="${L.video}" controls playsinline preload="metadata"></video>
+    <video id="v" src="${L.video}" ${L.poster ? `poster="${L.poster}"` : ""} controls playsinline preload="auto"></video>
     <div class="card" id="qcard"><div class="locked">🔒 Finish the video to unlock today's challenge (+${25 * mult} XP)</div></div>
     <div id="quest"></div>
     <div class="past">${man.days.length > 1 ? "Rewatch: " + man.days.slice(-7).filter(x => x.day !== L.day).map(x => `<a href="?d=${x.day}">Day ${x.day}</a>`).join(" · ") : ""}</div>`;

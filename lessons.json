@@ -4,6 +4,7 @@
    "day": 1,
    "title": "The Balance Trick",
    "video": "videos/day001.mp4",
+   "poster": "videos/day001.jpg",
    "q": "eyJwcm9tcHQiOiAiNHggXHUyMjEyIDUgPSAyMy4gV2hhdCBpcyB0aGUgdmFsdWUgb2YgeD8iLCAiY2hvaWNlcyI6IFsiNC41IiwgIjciLCAiMTgiLCAiMjgiXSwgImEiOiAxLCAiZXhwbGFpbiI6ICJBZGQgNSB0byBib3RoIHNpZGVzOiA0eCA9IDI4LiBEaXZpZGUgYm90aCBzaWRlcyBieSA0OiB4ID0gNy4gQ2hlY2s6IDQoNykgXHUyMjEyIDUgPSAyMyBcdTI3MTQifQ==",
    "boss": false,
    "resources": [

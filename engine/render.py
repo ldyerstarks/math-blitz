@@ -296,9 +296,13 @@ def main(lesson_path, out_path):
     os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     tmp_out = out_path + ".part.mp4"
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", silent, "-i", os.path.join(tmp, "voice.wav"),
-                    "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
+                    "-map", "0:v", "-map", "1:a", "-vf", "scale=720:1280", "-c:v", "libx264", "-preset", "veryfast",
+                    "-crf", "26", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k", "-ac", "1",
                     "-movflags", "+faststart", "-shortest", tmp_out], check=True)
     os.replace(tmp_out, out_path)
+    # poster frame (shows instantly on phones instead of a black box)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", "2.5", "-i", out_path, "-frames:v", "1",
+                    "-q:v", "5", out_path[:-4] + ".jpg"], check=True)
     shutil.rmtree(tmp, ignore_errors=True)
     print(f"done: {out_path} ({total:.1f}s)")
 

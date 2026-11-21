@@ -21,7 +21,7 @@ for p in sorted(glob.glob(os.path.join(HERE, "lessons", "day*.json"))):
     assert 0 <= q["answer"] < len(q["choices"]), p
     enc = base64.b64encode(json.dumps({"prompt": q["prompt"], "choices": q["choices"],
                                        "a": q["answer"], "explain": q["explain"]}).encode()).decode()
-    days.append({"day": L["day"], "title": L["title"], "video": f"videos/{name}", "q": enc,
+    days.append({"day": L["day"], "title": L["title"], "video": f"videos/{name}", "poster": f"videos/{name[:-4]}.jpg" if os.path.exists(vid[:-4] + ".jpg") else "", "q": enc,
                  "boss": bool(L.get("boss")), "resources": L.get("resources", [])})
 cfg_p = os.path.join(HERE, "config.json")
 cfg = json.load(open(cfg_p)) if os.path.exists(cfg_p) else {}
