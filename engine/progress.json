@@ -1,14 +1,21 @@
 {
-  "last_day": 1,
-  "topic_index": 1,
-  "level": 3.0,
+  "last_day": 2,
+  "topic_index": 2,
+  "level": 4.7,
   "history": [
     {
       "day": 1,
       "topic": "Two-step linear equations",
       "title": "The Balance Trick",
-      "result": "pending",
+      "result": "correct",
       "sent": true
+    },
+    {
+      "day": 2,
+      "topic": "Equations with variables on both sides",
+      "title": "Both Sides Brawl",
+      "result": "pending",
+      "sent": false
     }
   ]
 }

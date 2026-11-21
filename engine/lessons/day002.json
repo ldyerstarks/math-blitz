@@ -1,0 +1,121 @@
+{
+  "day": 2,
+  "title": "Both Sides Brawl",
+  "topic": "Equations with variables on both sides",
+  "sat_domain": "Algebra",
+  "voice": "am_puck",
+  "speed": 1.08,
+  "scenes": [
+    {
+      "kind": "title",
+      "big": "BOTH SIDES BRAWL",
+      "sub": "When x shows up twice",
+      "tag": "SAT skill: Algebra  ·  +25 XP",
+      "say": "Welcome back to Math Blitz! Day two, and you crushed yesterday. Today x shows up on both sides. It's a Both Sides Brawl!"
+    },
+    {
+      "kind": "board",
+      "heading": "THE MATCHUP",
+      "lines": [
+        {"t": "7x + 2 = 3x + 26", "c": "white", "s": 110}
+      ],
+      "note": "Rule one: get all the x's on ONE side first.",
+      "note_at": 2.4,
+      "say": "Seven x plus two equals three x plus twenty six. X on both sides! Rule one: round up every x on one side."
+    },
+    {
+      "kind": "board",
+      "heading": "MOVE 1: SEND 3x PACKING",
+      "lines": [
+        {"t": "7x + 2 = 3x + 26", "c": "white"},
+        {"t": "− 3x        − 3x", "c": "pink"},
+        {"t": "4x + 2 = 26", "c": "yellow", "s": 110}
+      ],
+      "say": "Move one! Subtract three x from both sides. Take away the smaller x term. Now it's four x plus two equals twenty six."
+    },
+    {
+      "kind": "board",
+      "heading": "MOVE 2: BALANCE TRICK",
+      "lines": [
+        {"t": "4x + 2 = 26", "c": "white"},
+        {"t": "4x = 24", "c": "yellow"},
+        {"t": "x = 6", "c": "green", "s": 140}
+      ],
+      "note": "Check: both sides make 44!",
+      "note_at": 4.4,
+      "say": "Now it's yesterday's Balance Trick! Subtract two, four x equals twenty four, x equals six. Check it. Both sides hit forty four. Swish!"
+    },
+    {
+      "kind": "question",
+      "prompt": "5x + 9 = 2x − 12",
+      "ask": "What is the value of x?",
+      "choices": ["7", "−1", "−7", "−3"],
+      "hold": 3.0,
+      "say": "Your turn, champ! Twenty five XP on the line. Five x plus nine equals two x minus twelve. Watch those negatives! What is x? Tap your answer below the video!"
+    }
+  ],
+  "question": {
+    "prompt": "5x + 9 = 2x − 12. What is the value of x?",
+    "choices": ["7", "−1", "−7", "−3"],
+    "answer": 2,
+    "explain": "Subtract 2x from both sides: 3x + 9 = −12. Subtract 9: 3x = −21, so x = −7. Check: 5(−7) + 9 = −26 and 2(−7) − 12 = −26.",
+    "trap_notes": {
+      "0": "Right steps, but lost the negative sign",
+      "1": "Did −12 + 9 = −3 instead of −12 − 9 = −21",
+      "3": "Added 2x to both sides instead of subtracting (7x = −21)"
+    }
+  },
+  "level": 4.7,
+  "boss": false,
+  "resources": [
+    {
+      "name": "Khan Academy",
+      "quest": true,
+      "label": "Do one Khan Academy practice set on equations with variables on both sides (get 3 right in a row).",
+      "button": "Practice on Khan Academy",
+      "url": "https://www.khanacademy.org/search?page_search_query=equations%20with%20variables%20on%20both%20sides"
+    },
+    {
+      "name": "Desmos",
+      "label": "Type 5x+9=2x-12 into the SAT's own calculator and see where the answer pops up.",
+      "url": "https://www.desmos.com/calculator"
+    },
+    {
+      "name": "Khan: Get Ready for SAT Prep: Math",
+      "label": "The free warm-up course built for students starting early.",
+      "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
+    }
+  ],
+  "rapid": [
+    {
+      "prompt": "8x − 5 = 3x + 20. What is x?",
+      "choices": ["5", "3", "25", "−5"],
+      "answer": 0,
+      "why": "Subtract 3x: 5x − 5 = 20. Add 5: 5x = 25, so x = 5."
+    },
+    {
+      "prompt": "2x + 11 = 6x − 13. What is x?",
+      "choices": ["−6", "3", "6", "0.5"],
+      "answer": 2,
+      "why": "Subtract 2x: 11 = 4x − 13. Add 13: 24 = 4x, so x = 6."
+    },
+    {
+      "prompt": "4(x + 3) = 2x + 20. What is x?",
+      "choices": ["8.5", "4", "8", "−4"],
+      "answer": 1,
+      "why": "Distribute first: 4x + 12 = 2x + 20 → 2x = 8 → x = 4."
+    },
+    {
+      "prompt": "Arcade A: $24 to get in + $3 a game. Arcade B: $7 a game. After how many games do they cost the same?",
+      "choices": ["8", "2.4", "6", "4"],
+      "answer": 2,
+      "why": "24 + 3g = 7g → 24 = 4g → g = 6 games."
+    },
+    {
+      "prompt": "If 7x + 5 = 3x + 29, what is 2x + 1?",
+      "choices": ["6", "13", "25", "12"],
+      "answer": 1,
+      "why": "4x = 24, so 2x = 12 and 2x + 1 = 13. Answer the question they asked!"
+    }
+  ]
+}

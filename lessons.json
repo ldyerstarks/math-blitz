@@ -33,6 +33,40 @@
      "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
     }
    ]
+  },
+  {
+   "rapid": [
+    "eyJwcm9tcHQiOiAiOHggXHUyMjEyIDUgPSAzeCArIDIwLiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIjUiLCAiMyIsICIyNSIsICJcdTIyMTI1Il0sICJhIjogMCwgIndoeSI6ICJTdWJ0cmFjdCAzeDogNXggXHUyMjEyIDUgPSAyMC4gQWRkIDU6IDV4ID0gMjUsIHNvIHggPSA1LiJ9",
+    "eyJwcm9tcHQiOiAiMnggKyAxMSA9IDZ4IFx1MjIxMiAxMy4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyJcdTIyMTI2IiwgIjMiLCAiNiIsICIwLjUiXSwgImEiOiAyLCAid2h5IjogIlN1YnRyYWN0IDJ4OiAxMSA9IDR4IFx1MjIxMiAxMy4gQWRkIDEzOiAyNCA9IDR4LCBzbyB4ID0gNi4ifQ==",
+    "eyJwcm9tcHQiOiAiNCh4ICsgMykgPSAyeCArIDIwLiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIjguNSIsICI0IiwgIjgiLCAiXHUyMjEyNCJdLCAiYSI6IDEsICJ3aHkiOiAiRGlzdHJpYnV0ZSBmaXJzdDogNHggKyAxMiA9IDJ4ICsgMjAgXHUyMTkyIDJ4ID0gOCBcdTIxOTIgeCA9IDQuIn0=",
+    "eyJwcm9tcHQiOiAiQXJjYWRlIEE6ICQyNCB0byBnZXQgaW4gKyAkMyBhIGdhbWUuIEFyY2FkZSBCOiAkNyBhIGdhbWUuIEFmdGVyIGhvdyBtYW55IGdhbWVzIGRvIHRoZXkgY29zdCB0aGUgc2FtZT8iLCAiY2hvaWNlcyI6IFsiOCIsICIyLjQiLCAiNiIsICI0Il0sICJhIjogMiwgIndoeSI6ICIyNCArIDNnID0gN2cgXHUyMTkyIDI0ID0gNGcgXHUyMTkyIGcgPSA2IGdhbWVzLiJ9",
+    "eyJwcm9tcHQiOiAiSWYgN3ggKyA1ID0gM3ggKyAyOSwgd2hhdCBpcyAyeCArIDE/IiwgImNob2ljZXMiOiBbIjYiLCAiMTMiLCAiMjUiLCAiMTIiXSwgImEiOiAxLCAid2h5IjogIjR4ID0gMjQsIHNvIDJ4ID0gMTIgYW5kIDJ4ICsgMSA9IDEzLiBBbnN3ZXIgdGhlIHF1ZXN0aW9uIHRoZXkgYXNrZWQhIn0="
+   ],
+   "day": 2,
+   "title": "Both Sides Brawl",
+   "video": "videos/day002.mp4",
+   "poster": "videos/day002.jpg",
+   "q": "eyJwcm9tcHQiOiAiNXggKyA5ID0gMnggXHUyMjEyIDEyLiBXaGF0IGlzIHRoZSB2YWx1ZSBvZiB4PyIsICJjaG9pY2VzIjogWyI3IiwgIlx1MjIxMjEiLCAiXHUyMjEyNyIsICJcdTIyMTIzIl0sICJhIjogMiwgImV4cGxhaW4iOiAiU3VidHJhY3QgMnggZnJvbSBib3RoIHNpZGVzOiAzeCArIDkgPSBcdTIyMTIxMi4gU3VidHJhY3QgOTogM3ggPSBcdTIyMTIyMSwgc28geCA9IFx1MjIxMjcuIENoZWNrOiA1KFx1MjIxMjcpICsgOSA9IFx1MjIxMjI2IGFuZCAyKFx1MjIxMjcpIFx1MjIxMiAxMiA9IFx1MjIxMjI2LiJ9",
+   "boss": false,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Do one Khan Academy practice set on equations with variables on both sides (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=equations%20with%20variables%20on%20both%20sides"
+    },
+    {
+     "name": "Desmos",
+     "label": "Type 5x+9=2x-12 into the SAT's own calculator and see where the answer pops up.",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Get Ready for SAT Prep: Math",
+     "label": "The free warm-up course built for students starting early.",
+     "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
+    }
+   ]
   }
  ],
  "prizes": {
