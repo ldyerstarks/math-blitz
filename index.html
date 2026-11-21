@@ -220,10 +220,22 @@ async function boot() {
       <button class="btn done" id="qDone" ${done ? "disabled" : ""}>${done ? "✅ Quest complete" : "I did it!"}</button>
       ${res.length > 1 ? `<ul class="res">${res.filter(r => r !== quest).map(r => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a> — ${esc(r.label)}</li>`).join("")}</ul>` : ""}
     </div>`;
-    let opened = false;
-    $("qGo").onclick = () => { opened = true; };
-    if (!done) $("qDone").onclick = async () => {
-      if (!opened && !confirm("Did you really do the practice? Dad gets a note either way 😉")) return;
+    const QUEST_SECS = 180; // must spend at least 3 minutes on the practice
+    const key = "blitz_qopen_" + L.day;
+    const btn = $("qDone");
+    function tickQuest() {
+      if (done) return;
+      const t0 = store(key);
+      if (!t0) { btn.disabled = true; btn.textContent = "Open the practice first"; return; }
+      const left = QUEST_SECS - Math.floor((Date.now() - t0) / 1000);
+      if (left > 0) { btn.disabled = true; btn.textContent = `Unlocks in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`; setTimeout(tickQuest, 1000); }
+      else { btn.disabled = false; btn.textContent = "I did it!"; }
+    }
+    $("qGo").onclick = () => { if (!store(key)) store(key, Date.now()); setTimeout(tickQuest, 50); };
+    tickQuest();
+    if (!done) btn.onclick = async () => {
+      const t0 = store(key);
+      if (!t0 || Date.now() - t0 < QUEST_SECS * 1000) return;
       store("blitz_bonus_" + L.day, 1);
       $("qDone").disabled = true; $("qDone").textContent = "✅ Quest complete";
       const s = await call("bonus", { pick: quest.name });

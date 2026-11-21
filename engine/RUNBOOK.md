@@ -9,11 +9,14 @@ You are making today's Math Blitz video for Len's 13-year-old son and texting it
    - https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin → `engine/voices.bin`
 3. Read `engine/curriculum.md` (topic order, adaptive rules, free resources) and `engine/progress.json`.
 
-## 1. Check yesterday (Gmail connector = Len's Dellajax inbox)
-Search `subject:"Math Blitz" newer_than:2d` and read the newest emails:
-- "🎯 RIGHT" / "❌ missed" for the last day → whether he got it right. No answer email → he skipped (treat like a miss for pacing, no level change).
-- The `[blitz-state day=N level=X.X xp=… streak=…]` line → his current Math Level. If none exists yet, use `progress.json` level (start 3.0).
-- "💬 note from your son" → read it ("too hard", "too easy", topic requests) and adjust.
+## 1. Check yesterday and Dad's settings (cheap: one Drive read)
+Read the "Math Blitz Log" Google Sheet with the Google Drive connector (`read_file_content`, sheet ID in the task prompt). It has two tabs:
+- **Sheet1 (log):** one row per event: `watched` (with % watched), `answered` (Picked, Correct? yes/no), `bonus`, `feedback` (a note from Jack — read it and adjust). No `answered` row for the last day → he skipped it (treat like a miss for pacing).
+- **Settings:** `Level adjustment` (B2), `Pause texts` (B3), `Note to the video maker` (B4), `Level before adjustment (auto)` (B5).
+  - If Pause texts = yes → do nothing today (no video, no text) and stop.
+  - His Math Level = B5 + B2, clamped to 1–10. Write today's question at that level.
+  - Follow B4 if Dad wrote anything there.
+Only fall back to Gmail (`subject:"Math Blitz" newer_than:2d`) if the Drive read fails.
 
 ## 2. Plan today
 - **First check `progress.json`: if the newest day has `"sent": false`, it was never texted. Skip making a new video and just text that day's link (step 5), then set `sent: true` and push.**
