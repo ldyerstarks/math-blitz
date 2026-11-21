@@ -1,0 +1,126 @@
+name: iOS app
+
+on:
+  push:
+    branches: [main]
+    paths: ['ios/**', '.github/workflows/ios.yml', 'bank.json']
+  pull_request:
+    paths: ['ios/**', '.github/workflows/ios.yml', 'bank.json']
+  workflow_dispatch:
+    inputs:
+      testflight:
+        description: 'Also upload to TestFlight (needs the Apple secrets)'
+        type: boolean
+        default: false
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Pure-Swift rules. Fast, and needs no Xcode project and no Apple account.
+  core:
+    name: Core logic tests
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show toolchain
+        run: swift --version
+      - name: Test MathBlitzCore
+        working-directory: ios/MathBlitzCore
+        run: swift test --enable-code-coverage
+
+  # Builds and runs the real app in a simulator. Still no Apple account:
+  # simulator builds don't need signing.
+  app:
+    name: Build and UI test
+    runs-on: macos-15
+    needs: core
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate the Xcode project
+        working-directory: ios
+        run: xcodegen generate
+
+      - name: Pick a simulator that exists on this runner
+        id: sim
+        run: |
+          NAME="$(python3 .github/scripts/pick-simulator.py)"
+          echo "Using simulator: $NAME"
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Build and test
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project MathBlitz.xcodeproj \
+            -scheme MathBlitz \
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.name }}" \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcbeautify || xcodebuild test \
+            -project MathBlitz.xcodeproj \
+            -scheme MathBlitz \
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.name }}" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Archive (unsigned) to prove a Release build compiles
+        working-directory: ios
+        run: |
+          xcodebuild build \
+            -project MathBlitz.xcodeproj \
+            -scheme MathBlitz \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: ios/TestResults.xcresult
+          if-no-files-found: ignore
+
+  # The lesson bank the app downloads must always be valid.
+  bank:
+    name: Validate lesson bank
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Check every question and answer
+        run: python3 engine/validate_bank.py bank.json
+
+  # Only runs when you ask for it, and only if the Apple secrets are present.
+  testflight:
+    name: Upload to TestFlight
+    runs-on: macos-15
+    needs: [core, app, bank]
+    if: github.event_name == 'workflow_dispatch' && inputs.testflight
+    environment: appstore
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: ios
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Ship it
+        working-directory: ios
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          APP_IDENTIFIER: ${{ vars.APP_IDENTIFIER }}
+          CHANGELOG: ${{ github.event.head_commit.message }}
+        run: bundle exec fastlane beta

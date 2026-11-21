@@ -1,0 +1,7 @@
+# Certificates and profiles live in a private git repo you own.
+# Create it once, then set MATCH_GIT_URL and MATCH_PASSWORD as GitHub secrets.
+git_url(ENV["MATCH_GIT_URL"])
+storage_mode("git")
+type("appstore")
+app_identifier([ENV["APP_IDENTIFIER"] || "com.dellajax.mathblitz"])
+readonly(true)

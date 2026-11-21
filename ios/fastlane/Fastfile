@@ -1,0 +1,57 @@
+# Ships Math Blitz to TestFlight from a GitHub Actions macOS runner.
+# No Mac required: the runner is the Mac. Signing uses an App Store Connect
+# API key, so there is no Apple ID password or 2FA prompt anywhere.
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and run every test (no signing, no Apple account needed)"
+  lane :test do
+    sh("cd .. && xcodegen generate")
+    run_tests(
+      project: "MathBlitz.xcodeproj",
+      scheme: "MathBlitz",
+      destination: "platform=iOS Simulator,name=#{ENV['SIM_NAME'] || 'iPhone 16'}",
+      xcargs: "CODE_SIGNING_ALLOWED=NO",
+      clean: true
+    )
+  end
+
+  desc "Upload a build to TestFlight"
+  lane :beta do
+    api_key = app_store_connect_api_key(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key_content: ENV.fetch("ASC_KEY_P8"),
+      is_key_content_base64: true,
+      in_house: false
+    )
+
+    sh("cd .. && xcodegen generate")
+
+    # Build number is the run number, so every upload is unique.
+    increment_build_number(
+      xcodeproj: "MathBlitz.xcodeproj",
+      build_number: ENV["GITHUB_RUN_NUMBER"] || Time.now.to_i.to_s
+    )
+
+    sync_code_signing(
+      type: "appstore",
+      readonly: true,
+      api_key: api_key,
+      app_identifier: [ENV["APP_IDENTIFIER"] || "com.dellajax.mathblitz"]
+    )
+
+    build_app(
+      project: "MathBlitz.xcodeproj",
+      scheme: "MathBlitz",
+      configuration: "Release",
+      export_method: "app-store"
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true,
+      changelog: ENV["CHANGELOG"] || "Daily Math Blitz build."
+    )
+  end
+end

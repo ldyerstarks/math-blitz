@@ -1,0 +1,2 @@
+# Filled in from CI secrets; nothing personal is committed here.
+app_identifier ENV["APP_IDENTIFIER"] || "com.dellajax.mathblitz"

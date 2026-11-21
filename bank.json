@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "day001",
+      "title": "The Balance Trick",
+      "topic": "Two-step linear equations",
+      "topicIndex": 1,
+      "satDomain": "Algebra",
+      "level": 3.0,
+      "boss": false,
+      "video": "videos/day001.mp4",
+      "question": {
+        "prompt": "4x − 5 = 23. What is the value of x?",
+        "choices": [
+          "4.5",
+          "7",
+          "18",
+          "28"
+        ],
+        "answer": 1,
+        "explain": "Add 5 to both sides: 4x = 28. Divide both sides by 4: x = 7. Check: 4(7) − 5 = 23 ✔"
+      },
+      "rapid": [
+        {
+          "prompt": "−3x + 8 = 29. What is x?",
+          "choices": [
+            "−7",
+            "7",
+            "−12",
+            "12"
+          ],
+          "answer": 0,
+          "why": "Subtract 8: −3x = 21. Divide by −3: x = −7. Watch the sign!"
+        },
+        {
+          "prompt": "x/4 − 6 = 3. What is x?",
+          "choices": [
+            "12",
+            "36",
+            "−12",
+            "9"
+          ],
+          "answer": 1,
+          "why": "Add 6: x/4 = 9. Multiply by 4: x = 36."
+        },
+        {
+          "prompt": "5(x − 2) = 35. What is x?",
+          "choices": [
+            "7",
+            "5",
+            "9",
+            "8"
+          ],
+          "answer": 2,
+          "why": "Divide by 5: x − 2 = 7, so x = 9."
+        },
+        {
+          "prompt": "A gym costs $25 to join plus $15 a month. Jake paid $160 total. How many months?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "12"
+          ],
+          "answer": 1,
+          "why": "15m + 25 = 160 → 15m = 135 → m = 9."
+        },
+        {
+          "prompt": "If 3x + 7 = 22, what is 6x − 1?",
+          "choices": [
+            "30",
+            "9",
+            "29",
+            "44"
+          ],
+          "answer": 2,
+          "why": "SAT shortcut: 3x = 15, so 6x = 30 and 6x − 1 = 29. No need to find x!"
+        }
+      ],
+      "resources": [
+        {
+          "name": "Khan Academy",
+          "label": "Do one Khan Academy practice set on two-step equations (get 3 right in a row).",
+          "url": "https://www.khanacademy.org/search?page_search_query=two-step%20equations",
+          "quest": true,
+          "button": "Practice on Khan Academy"
+        },
+        {
+          "name": "Desmos",
+          "label": "The free graphing calculator you'll use on the real SAT. Type 4x-5=23 and see what it does.",
+          "url": "https://www.desmos.com/calculator",
+          "quest": false
+        },
+        {
+          "name": "Khan: Get Ready for SAT Prep: Math",
+          "label": "The free warm-up course built for students starting early.",
+          "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math",
+          "quest": false
+        }
+      ],
+      "poster": "videos/day001.jpg"
+    },
+    {
+      "id": "day002",
+      "title": "Both Sides Brawl",
+      "topic": "Equations with variables on both sides",
+      "topicIndex": 2,
+      "satDomain": "Algebra",
+      "level": 4.7,
+      "boss": false,
+      "video": "videos/day002.mp4",
+      "question": {
+        "prompt": "5x + 9 = 2x − 12. What is the value of x?",
+        "choices": [
+          "7",
+          "−1",
+          "−7",
+          "−3"
+        ],
+        "answer": 2,
+        "explain": "Subtract 2x from both sides: 3x + 9 = −12. Subtract 9: 3x = −21, so x = −7. Check: 5(−7) + 9 = −26 and 2(−7) − 12 = −26."
+      },
+      "rapid": [
+        {
+          "prompt": "8x − 5 = 3x + 20. What is x?",
+          "choices": [
+            "5",
+            "3",
+            "25",
+            "−5"
+          ],
+          "answer": 0,
+          "why": "Subtract 3x: 5x − 5 = 20. Add 5: 5x = 25, so x = 5."
+        },
+        {
+          "prompt": "2x + 11 = 6x − 13. What is x?",
+          "choices": [
+            "−6",
+            "3",
+            "6",
+            "0.5"
+          ],
+          "answer": 2,
+          "why": "Subtract 2x: 11 = 4x − 13. Add 13: 24 = 4x, so x = 6."
+        },
+        {
+          "prompt": "4(x + 3) = 2x + 20. What is x?",
+          "choices": [
+            "8.5",
+            "4",
+            "8",
+            "−4"
+          ],
+          "answer": 1,
+          "why": "Distribute first: 4x + 12 = 2x + 20 → 2x = 8 → x = 4."
+        },
+        {
+          "prompt": "Arcade A: $24 to get in + $3 a game. Arcade B: $7 a game. After how many games do they cost the same?",
+          "choices": [
+            "8",
+            "2.4",
+            "6",
+            "4"
+          ],
+          "answer": 2,
+          "why": "24 + 3g = 7g → 24 = 4g → g = 6 games."
+        },
+        {
+          "prompt": "If 7x + 5 = 3x + 29, what is 2x + 1?",
+          "choices": [
+            "6",
+            "13",
+            "25",
+            "12"
+          ],
+          "answer": 1,
+          "why": "4x = 24, so 2x = 12 and 2x + 1 = 13. Answer the question they asked!"
+        }
+      ],
+      "resources": [
+        {
+          "name": "Khan Academy",
+          "label": "Do one Khan Academy practice set on equations with variables on both sides (get 3 right in a row).",
+          "url": "https://www.khanacademy.org/search?page_search_query=equations%20with%20variables%20on%20both%20sides",
+          "quest": true,
+          "button": "Practice on Khan Academy"
+        },
+        {
+          "name": "Desmos",
+          "label": "Type 5x+9=2x-12 into the SAT's own calculator and see where the answer pops up.",
+          "url": "https://www.desmos.com/calculator",
+          "quest": false
+        },
+        {
+          "name": "Khan: Get Ready for SAT Prep: Math",
+          "label": "The free warm-up course built for students starting early.",
+          "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math",
+          "quest": false
+        }
+      ],
+      "poster": "videos/day002.jpg"
+    }
+  ]
+}
