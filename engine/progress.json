@@ -1,7 +1,7 @@
 {
-  "last_day": 2,
+  "last_day": 3,
   "topic_index": 2,
-  "level": 4.7,
+  "level": 4.5,
   "history": [
     {
       "day": 1,
@@ -14,8 +14,15 @@
       "day": 2,
       "topic": "Equations with variables on both sides",
       "title": "Both Sides Brawl",
-      "result": "pending",
+      "result": "missed",
       "sent": true
+    },
+    {
+      "day": 3,
+      "topic": "Equations with variables on both sides (Instant Replay)",
+      "title": "Opposite Day",
+      "result": "pending",
+      "sent": false
     }
   ]
 }

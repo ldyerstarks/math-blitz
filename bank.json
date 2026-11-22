@@ -102,6 +102,106 @@
       "poster": "videos/day001.jpg"
     },
     {
+      "id": "day003",
+      "title": "Opposite Day",
+      "topic": "Equations with variables on both sides",
+      "topicIndex": 2,
+      "satDomain": "Algebra",
+      "level": 4.5,
+      "boss": false,
+      "video": "videos/day003.mp4",
+      "question": {
+        "prompt": "7x − 4 = 3x + 16. What is the value of x?",
+        "choices": [
+          "3",
+          "2",
+          "20",
+          "5"
+        ],
+        "answer": 3,
+        "explain": "Subtract 3x from both sides: 4x − 4 = 16. Add 4: 4x = 20, so x = 5. Check: 7(5) − 4 = 31 and 3(5) + 16 = 31."
+      },
+      "rapid": [
+        {
+          "prompt": "5x + 3 = 2x + 15. What is x?",
+          "choices": [
+            "6",
+            "4",
+            "12",
+            "−4"
+          ],
+          "answer": 1,
+          "why": "Subtract 2x: 3x + 3 = 15. Subtract 3: 3x = 12, so x = 4."
+        },
+        {
+          "prompt": "9x − 7 = 4x + 8. What is x?",
+          "choices": [
+            "0.2",
+            "15",
+            "3",
+            "−3"
+          ],
+          "answer": 2,
+          "why": "Subtract 4x: 5x − 7 = 8. Add 7: 5x = 15, so x = 3."
+        },
+        {
+          "prompt": "3x − 10 = 7x + 6. What is x?",
+          "choices": [
+            "4",
+            "−4",
+            "−1",
+            "−16"
+          ],
+          "answer": 1,
+          "why": "Subtract 3x: −10 = 4x + 6. Subtract 6: −16 = 4x, so x = −4."
+        },
+        {
+          "prompt": "Mia has $50 and saves $6 a week. Leo has $14 and saves $10 a week. After how many weeks do they have the same?",
+          "choices": [
+            "16",
+            "4",
+            "9",
+            "36"
+          ],
+          "answer": 2,
+          "why": "50 + 6w = 14 + 10w → 36 = 4w → w = 9 weeks."
+        },
+        {
+          "prompt": "If 8x + 3 = 5x + 18, what is 4x − 1?",
+          "choices": [
+            "5",
+            "19",
+            "20",
+            "21"
+          ],
+          "answer": 1,
+          "why": "3x = 15, so x = 5 and 4x − 1 = 19. Answer the question they asked!"
+        }
+      ],
+      "resources": [
+        {
+          "name": "Khan Academy",
+          "label": "Do one Khan Academy practice set on equations with variables on both sides (get 3 right in a row).",
+          "url": "https://www.khanacademy.org/search?page_search_query=equations%20with%20variables%20on%20both%20sides",
+          "quest": true,
+          "button": "Practice on Khan Academy"
+        },
+        {
+          "name": "Desmos",
+          "label": "Type 7x-4=3x+16 into the SAT's own calculator and see where the answer pops up.",
+          "url": "https://www.desmos.com/calculator",
+          "quest": false
+        },
+        {
+          "name": "Khan: Get Ready for SAT Prep: Math",
+          "label": "The free warm-up course built for students starting early.",
+          "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math",
+          "quest": false
+        }
+      ],
+      "poster": "videos/day003.jpg"
+    },
+    {
       "id": "day002",
       "title": "Both Sides Brawl",
       "topic": "Equations with variables on both sides",

@@ -67,6 +67,40 @@
      "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
     }
    ]
+  },
+  {
+   "rapid": [
+    "eyJwcm9tcHQiOiAiNXggKyAzID0gMnggKyAxNS4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyI2IiwgIjQiLCAiMTIiLCAiXHUyMjEyNCJdLCAiYSI6IDEsICJ3aHkiOiAiU3VidHJhY3QgMng6IDN4ICsgMyA9IDE1LiBTdWJ0cmFjdCAzOiAzeCA9IDEyLCBzbyB4ID0gNC4ifQ==",
+    "eyJwcm9tcHQiOiAiOXggXHUyMjEyIDcgPSA0eCArIDguIFdoYXQgaXMgeD8iLCAiY2hvaWNlcyI6IFsiMC4yIiwgIjE1IiwgIjMiLCAiXHUyMjEyMyJdLCAiYSI6IDIsICJ3aHkiOiAiU3VidHJhY3QgNHg6IDV4IFx1MjIxMiA3ID0gOC4gQWRkIDc6IDV4ID0gMTUsIHNvIHggPSAzLiJ9",
+    "eyJwcm9tcHQiOiAiM3ggXHUyMjEyIDEwID0gN3ggKyA2LiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIjQiLCAiXHUyMjEyNCIsICJcdTIyMTIxIiwgIlx1MjIxMjE2Il0sICJhIjogMSwgIndoeSI6ICJTdWJ0cmFjdCAzeDogXHUyMjEyMTAgPSA0eCArIDYuIFN1YnRyYWN0IDY6IFx1MjIxMjE2ID0gNHgsIHNvIHggPSBcdTIyMTI0LiJ9",
+    "eyJwcm9tcHQiOiAiTWlhIGhhcyAkNTAgYW5kIHNhdmVzICQ2IGEgd2Vlay4gTGVvIGhhcyAkMTQgYW5kIHNhdmVzICQxMCBhIHdlZWsuIEFmdGVyIGhvdyBtYW55IHdlZWtzIGRvIHRoZXkgaGF2ZSB0aGUgc2FtZT8iLCAiY2hvaWNlcyI6IFsiMTYiLCAiNCIsICI5IiwgIjM2Il0sICJhIjogMiwgIndoeSI6ICI1MCArIDZ3ID0gMTQgKyAxMHcgXHUyMTkyIDM2ID0gNHcgXHUyMTkyIHcgPSA5IHdlZWtzLiJ9",
+    "eyJwcm9tcHQiOiAiSWYgOHggKyAzID0gNXggKyAxOCwgd2hhdCBpcyA0eCBcdTIyMTIgMT8iLCAiY2hvaWNlcyI6IFsiNSIsICIxOSIsICIyMCIsICIyMSJdLCAiYSI6IDEsICJ3aHkiOiAiM3ggPSAxNSwgc28geCA9IDUgYW5kIDR4IFx1MjIxMiAxID0gMTkuIEFuc3dlciB0aGUgcXVlc3Rpb24gdGhleSBhc2tlZCEifQ=="
+   ],
+   "day": 3,
+   "title": "Opposite Day",
+   "video": "videos/day003.mp4",
+   "poster": "videos/day003.jpg",
+   "q": "eyJwcm9tcHQiOiAiN3ggXHUyMjEyIDQgPSAzeCArIDE2LiBXaGF0IGlzIHRoZSB2YWx1ZSBvZiB4PyIsICJjaG9pY2VzIjogWyIzIiwgIjIiLCAiMjAiLCAiNSJdLCAiYSI6IDMsICJleHBsYWluIjogIlN1YnRyYWN0IDN4IGZyb20gYm90aCBzaWRlczogNHggXHUyMjEyIDQgPSAxNi4gQWRkIDQ6IDR4ID0gMjAsIHNvIHggPSA1LiBDaGVjazogNyg1KSBcdTIyMTIgNCA9IDMxIGFuZCAzKDUpICsgMTYgPSAzMS4ifQ==",
+   "boss": false,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Do one Khan Academy practice set on equations with variables on both sides (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=equations%20with%20variables%20on%20both%20sides"
+    },
+    {
+     "name": "Desmos",
+     "label": "Type 7x-4=3x+16 into the SAT's own calculator and see where the answer pops up.",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Get Ready for SAT Prep: Math",
+     "label": "The free warm-up course built for students starting early.",
+     "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
+    }
+   ]
   }
  ],
  "prizes": {
