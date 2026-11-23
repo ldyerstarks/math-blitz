@@ -1,7 +1,7 @@
 {
-  "last_day": 3,
-  "topic_index": 2,
-  "level": 4.5,
+  "last_day": 4,
+  "topic_index": 3,
+  "level": 4.7,
   "history": [
     {
       "day": 1,
@@ -21,8 +21,15 @@
       "day": 3,
       "topic": "Equations with variables on both sides (Instant Replay)",
       "title": "Opposite Day",
-      "result": "pending",
+      "result": "correct",
       "sent": true
+    },
+    {
+      "day": 4,
+      "topic": "Distributing and combining like terms",
+      "title": "The Hand-Off",
+      "result": "pending",
+      "sent": false
     }
   ]
 }

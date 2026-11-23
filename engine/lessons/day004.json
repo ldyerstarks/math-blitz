@@ -1,0 +1,123 @@
+{
+  "day": 4,
+  "title": "The Hand-Off",
+  "topic": "Distributing and combining like terms",
+  "sat_domain": "Algebra",
+  "voice": "am_puck",
+  "speed": 1.08,
+  "scenes": [
+    {
+      "kind": "title",
+      "big": "THE HAND-OFF",
+      "sub": "Distribute, then team up",
+      "tag": "SAT skill: Algebra  ·  +25 XP",
+      "say": "Math Blitz, day four! You owned Opposite Day, so here's a brand new play: The Hand-Off! A number outside the parentheses passes to every player inside."
+    },
+    {
+      "kind": "board",
+      "heading": "THE HAND-OFF",
+      "lines": [
+        {"t": "3(x + 4)", "c": "white", "s": 110},
+        {"t": "3 × x  +  3 × 4", "c": "pink"},
+        {"t": "3x + 12", "c": "yellow", "s": 110}
+      ],
+      "note": "Hand it to EVERY term inside.",
+      "note_at": 2.0,
+      "say": "Three times x plus four. The three hands off to every term inside. Three times x, plus three times four. That's three x plus twelve."
+    },
+    {
+      "kind": "board",
+      "heading": "TEAM UP THE x's",
+      "lines": [
+        {"t": "2(x + 5) + 3x = 30", "c": "white"},
+        {"t": "2x + 10 + 3x = 30", "c": "pink"},
+        {"t": "5x + 10 = 30", "c": "yellow", "s": 110}
+      ],
+      "say": "Two times x plus five, plus three x, equals thirty. Hand it off: two x plus ten. Team up the x's: five x plus ten."
+    },
+    {
+      "kind": "board",
+      "heading": "FINISH IT",
+      "lines": [
+        {"t": "5x + 10 = 30", "c": "white"},
+        {"t": "5x = 20", "c": "yellow"},
+        {"t": "x = 4", "c": "green", "s": 140}
+      ],
+      "note": "Check: 2(9) + 12 = 30",
+      "note_at": 4.0,
+      "say": "Subtract ten: five x equals twenty. Divide by five: x equals four. Check it: two times nine plus twelve is thirty. Touchdown!"
+    },
+    {
+      "kind": "question",
+      "prompt": "4(x − 3) + 2x = 18",
+      "ask": "What is the value of x?",
+      "choices": ["5", "1", "3.5", "30"],
+      "hold": 3.0,
+      "say": "Your turn, champ! Twenty five XP on the line. Four times x minus three, plus two x, equals eighteen. Hand it off! What is x? Tap your answer below the video!"
+    }
+  ],
+  "question": {
+    "prompt": "4(x − 3) + 2x = 18. What is the value of x?",
+    "choices": ["5", "1", "3.5", "30"],
+    "answer": 0,
+    "explain": "Hand off the 4: 4x − 12 + 2x = 18. Team up: 6x − 12 = 18. Add 12: 6x = 30, so x = 5. Check: 4(2) + 10 = 18.",
+    "trap_notes": {
+      "1": "Made −12 into +12 when distributing (6x + 12 = 18)",
+      "2": "Only handed the 4 to the x, not the −3 (6x − 3 = 18)",
+      "3": "Stopped at 6x = 30 and forgot to divide by 6"
+    }
+  },
+  "level": 4.7,
+  "boss": false,
+  "resources": [
+    {
+      "name": "Khan Academy",
+      "quest": true,
+      "label": "Do one Khan Academy practice set on equations with parentheses (get 3 right in a row).",
+      "button": "Practice on Khan Academy",
+      "url": "https://www.khanacademy.org/search?page_search_query=equations%20with%20parentheses"
+    },
+    {
+      "name": "Desmos",
+      "label": "Type 4(x-3)+2x=18 into the SAT's own calculator and see where the answer pops up.",
+      "url": "https://www.desmos.com/calculator"
+    },
+    {
+      "name": "Khan: Get Ready for SAT Prep: Math",
+      "label": "The free warm-up course built for students starting early.",
+      "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
+    }
+  ],
+  "rapid": [
+    {
+      "prompt": "5(x + 2) = 35. What is x?",
+      "choices": ["6.6", "7", "5", "33"],
+      "answer": 2,
+      "why": "Hand off the 5: 5x + 10 = 35. Subtract 10: 5x = 25, so x = 5."
+    },
+    {
+      "prompt": "3(x − 4) + x = 20. What is x?",
+      "choices": ["6", "2", "32", "8"],
+      "answer": 3,
+      "why": "3x − 12 + x = 20 → 4x − 12 = 20 → 4x = 32 → x = 8."
+    },
+    {
+      "prompt": "−2(x + 3) = 10. What is x?",
+      "choices": ["−8", "−2", "8", "−6.5"],
+      "answer": 0,
+      "why": "The −2 hands off to both: −2x − 6 = 10 → −2x = 16 → x = −8."
+    },
+    {
+      "prompt": "Tickets cost $x each plus a $3 fee per ticket. 4 friends pay $52 in all. What is x?",
+      "choices": ["12.25", "13", "10", "16"],
+      "answer": 2,
+      "why": "4(x + 3) = 52 → x + 3 = 13 → x = 10. The fee is per ticket, so it gets the hand-off too."
+    },
+    {
+      "prompt": "If 3(2x − 1) − 2(x + 4) = 9, what is 2x?",
+      "choices": ["5", "10", "2", "20"],
+      "answer": 1,
+      "why": "6x − 3 − 2x − 8 = 9 → 4x = 20 → x = 5, so 2x = 10. Answer what they asked!"
+    }
+  ]
+}

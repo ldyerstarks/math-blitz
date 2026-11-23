@@ -101,6 +101,40 @@
      "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
     }
    ]
+  },
+  {
+   "rapid": [
+    "eyJwcm9tcHQiOiAiNSh4ICsgMikgPSAzNS4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyI2LjYiLCAiNyIsICI1IiwgIjMzIl0sICJhIjogMiwgIndoeSI6ICJIYW5kIG9mZiB0aGUgNTogNXggKyAxMCA9IDM1LiBTdWJ0cmFjdCAxMDogNXggPSAyNSwgc28geCA9IDUuIn0=",
+    "eyJwcm9tcHQiOiAiMyh4IFx1MjIxMiA0KSArIHggPSAyMC4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyI2IiwgIjIiLCAiMzIiLCAiOCJdLCAiYSI6IDMsICJ3aHkiOiAiM3ggXHUyMjEyIDEyICsgeCA9IDIwIFx1MjE5MiA0eCBcdTIyMTIgMTIgPSAyMCBcdTIxOTIgNHggPSAzMiBcdTIxOTIgeCA9IDguIn0=",
+    "eyJwcm9tcHQiOiAiXHUyMjEyMih4ICsgMykgPSAxMC4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyJcdTIyMTI4IiwgIlx1MjIxMjIiLCAiOCIsICJcdTIyMTI2LjUiXSwgImEiOiAwLCAid2h5IjogIlRoZSBcdTIyMTIyIGhhbmRzIG9mZiB0byBib3RoOiBcdTIyMTIyeCBcdTIyMTIgNiA9IDEwIFx1MjE5MiBcdTIyMTIyeCA9IDE2IFx1MjE5MiB4ID0gXHUyMjEyOC4ifQ==",
+    "eyJwcm9tcHQiOiAiVGlja2V0cyBjb3N0ICR4IGVhY2ggcGx1cyBhICQzIGZlZSBwZXIgdGlja2V0LiA0IGZyaWVuZHMgcGF5ICQ1MiBpbiBhbGwuIFdoYXQgaXMgeD8iLCAiY2hvaWNlcyI6IFsiMTIuMjUiLCAiMTMiLCAiMTAiLCAiMTYiXSwgImEiOiAyLCAid2h5IjogIjQoeCArIDMpID0gNTIgXHUyMTkyIHggKyAzID0gMTMgXHUyMTkyIHggPSAxMC4gVGhlIGZlZSBpcyBwZXIgdGlja2V0LCBzbyBpdCBnZXRzIHRoZSBoYW5kLW9mZiB0b28uIn0=",
+    "eyJwcm9tcHQiOiAiSWYgMygyeCBcdTIyMTIgMSkgXHUyMjEyIDIoeCArIDQpID0gOSwgd2hhdCBpcyAyeD8iLCAiY2hvaWNlcyI6IFsiNSIsICIxMCIsICIyIiwgIjIwIl0sICJhIjogMSwgIndoeSI6ICI2eCBcdTIyMTIgMyBcdTIyMTIgMnggXHUyMjEyIDggPSA5IFx1MjE5MiA0eCA9IDIwIFx1MjE5MiB4ID0gNSwgc28gMnggPSAxMC4gQW5zd2VyIHdoYXQgdGhleSBhc2tlZCEifQ=="
+   ],
+   "day": 4,
+   "title": "The Hand-Off",
+   "video": "videos/day004.mp4",
+   "poster": "videos/day004.jpg",
+   "q": "eyJwcm9tcHQiOiAiNCh4IFx1MjIxMiAzKSArIDJ4ID0gMTguIFdoYXQgaXMgdGhlIHZhbHVlIG9mIHg/IiwgImNob2ljZXMiOiBbIjUiLCAiMSIsICIzLjUiLCAiMzAiXSwgImEiOiAwLCAiZXhwbGFpbiI6ICJIYW5kIG9mZiB0aGUgNDogNHggXHUyMjEyIDEyICsgMnggPSAxOC4gVGVhbSB1cDogNnggXHUyMjEyIDEyID0gMTguIEFkZCAxMjogNnggPSAzMCwgc28geCA9IDUuIENoZWNrOiA0KDIpICsgMTAgPSAxOC4ifQ==",
+   "boss": false,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Do one Khan Academy practice set on equations with parentheses (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=equations%20with%20parentheses"
+    },
+    {
+     "name": "Desmos",
+     "label": "Type 4(x-3)+2x=18 into the SAT's own calculator and see where the answer pops up.",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Get Ready for SAT Prep: Math",
+     "label": "The free warm-up course built for students starting early.",
+     "url": "https://www.khanacademy.org/search?page_search_query=get%20ready%20for%20SAT%20prep%20math"
+    }
+   ]
   }
  ],
  "prizes": {
