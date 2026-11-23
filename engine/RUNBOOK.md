@@ -63,3 +63,4 @@ After a successful send set `sent: true` in progress.json and push. If the send 
 
 ## Page changes
 - 2026-11-21: Redesigned as a 4-step flow with a Next button. Why: on Day 2 he answered, then never found Rapid Fire; 30 min later he opened Day 1 from an old link and did its Rapid Fire there. Now: old-day banner points to today, stepper shows what's done/locked, wrong Rapid Fire answers wait for "Got it" instead of a 3-second timer, stats and past days moved into a sheet behind the XP chip.
+- 2026-11-23: Added a big "⚡ Rapid Fire · 5 quick taps · +XP" button right under the answer explanation (hidden once Rapid Fire is done). Why: on Day 3 he answered right at 68 s, then left at 90 s without ever reaching Rapid Fire — the only way on was the bottom Next bar.

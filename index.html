@@ -423,7 +423,9 @@ async function boot() {
     const cheers = ["NOTHING BUT NET! 🏀", "TOUCHDOWN! 🏈", "GOOOAL! ⚽", "HOME RUN! ⚾", "SLAM DUNK! 🏀", "HAT TRICK! 🏒"];
     $("res").innerHTML = `<div class="result" style="color:var(${right ? "--g" : "--p"})">${right ? (boss ? "BOSS DEFEATED! ⚔️" : cheers[L.day % cheers.length]) : "So close! Here's the play-by-play:"}</div>
       <div id="gain"></div><div class="explain">${esc(q.explain)}</div>
-      ${right ? "" : `<div class="explain" style="margin-top:8px">💪 Tomorrow's video runs this play back so you'll own it. Win some XP back in Rapid Fire ⬇️</div>`}`;
+      ${right ? "" : `<div class="explain" style="margin-top:8px">💪 Tomorrow's video runs this play back so you'll own it. Win some XP back in Rapid Fire ⬇️</div>`}
+      ${RAPID.length && !isDone("rapid") ? `<button class="btn go wide" id="toRapid" style="margin-top:14px">⚡ ${right ? "Keep it rolling" : "Win XP back"}: Rapid Fire · ${RAPID.length} quick taps · +${10 * mult * RAPID.length} XP ➜</button>` : ""}`;
+    if ($("toRapid")) $("toRapid").onclick = () => go("rapid", "n");
     if (right && fresh) confetti();
     if (fresh) setTimeout(() => $("res").scrollIntoView({ behavior: "smooth", block: "start" }), 400);
   }
