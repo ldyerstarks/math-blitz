@@ -470,7 +470,10 @@ async function boot() {
   function rapidDone(st) {
     const n = st.res.filter(Boolean).length;
     const msg = n === RAPID.length ? "PERFECT ROUND! 🔥🔥🔥" : n >= RAPID.length - 1 ? "ALMOST PERFECT! 🔥" : n >= RAPID.length / 2 ? "Solid round! 💪" : "Tough round. Tomorrow you get your revenge 💪";
-    $("rapid").innerHTML = `${dots({ i: RAPID.length, res: st.res })}<div class="big">${n} / ${RAPID.length}</div><div class="big" style="font-size:18px">${msg}</div>`;
+    const bonusDone = isDone("bonus");
+    $("rapid").innerHTML = `${dots({ i: RAPID.length, res: st.res })}<div class="big">${n} / ${RAPID.length}</div><div class="big" style="font-size:18px">${msg}</div>` +
+      (bonusDone ? "" : `<button class="btn go wide" id="toBonus" style="margin-top:14px">⭐ Last step: Bonus Quest · +${30 * mult} XP ➜</button>`);
+    if ($("toBonus")) $("toBonus").onclick = () => go("bonus", "n");
     if (n === RAPID.length && !st.party) { st.party = 1; store(rkey, st); confetti(); }
   }
 
