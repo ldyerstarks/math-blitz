@@ -169,6 +169,40 @@
      "url": "https://www.khanacademy.org/digital-sat"
     }
    ]
+  },
+  {
+   "rapid": [
+    "eyJwcm9tcHQiOiAieC81ICsgMSA9IDQuIFdoYXQgaXMgeD8iLCAiY2hvaWNlcyI6IFsiMTUiLCAiMTkiLCAiMyIsICIyNSJdLCAiYSI6IDAsICJ3aHkiOiAiU3VidHJhY3QgMTogeC81ID0gMy4gTXVsdGlwbHkgYnkgNTogeCA9IDE1LiJ9",
+    "eyJwcm9tcHQiOiAieC8yICsgeC82ID0gOC4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyIyIiwgIjI0IiwgIjEyIiwgIjQ4Il0sICJhIjogMiwgIndoeSI6ICJcdTAwZDcgNiBldmVyeSB0ZXJtOiAzeCArIHggPSA0OCBcdTIxOTIgNHggPSA0OCBcdTIxOTIgeCA9IDEyLiJ9",
+    "eyJwcm9tcHQiOiAiKHggXHUyMjEyIDIpLzMgPSB4LzUuIFdoYXQgaXMgeD8iLCAiY2hvaWNlcyI6IFsiMSIsICI1IiwgIlx1MjIxMjUiLCAiMTAiXSwgImEiOiAxLCAid2h5IjogIlx1MDBkNyAxNTogNSh4IFx1MjIxMiAyKSA9IDN4IFx1MjE5MiA1eCBcdTIyMTIgMTAgPSAzeCBcdTIxOTIgMnggPSAxMCBcdTIxOTIgeCA9IDUuIn0=",
+    "eyJwcm9tcHQiOiAiTGVvIGJpa2VkIDEvMyBvZiBhIHRyYWlsLCB0aGVuIDEvNCBvZiBpdCwgdGhlbiB0aGUgbGFzdCAxMCBrbS4gSG93IGxvbmcgaXMgdGhlIHdob2xlIHRyYWlsPyIsICJjaG9pY2VzIjogWyIyNCBrbSIsICIxNCBrbSIsICIxMjAga20iLCAiNDAga20iXSwgImEiOiAwLCAid2h5IjogIngvMyArIHgvNCArIDEwID0geC4gXHUwMGQ3IDEyOiA3eCArIDEyMCA9IDEyeCwgc28gNXggPSAxMjAgYW5kIHggPSAyNCBrbS4ifQ==",
+    "eyJwcm9tcHQiOiAiSWYgeC80ICsgeC82ID0gNSwgd2hhdCBpcyA1eD8iLCAiY2hvaWNlcyI6IFsiMTIiLCAiNjAiLCAiNSIsICIzMDAiXSwgImEiOiAxLCAid2h5IjogIlx1MDBkNyAxMiBldmVyeSB0ZXJtOiAzeCArIDJ4ID0gNjAsIHNvIDV4ID0gNjAuIE5vIG5lZWQgdG8gZmluZCB4ISJ9"
+   ],
+   "day": 6,
+   "title": "No Fraction Zone",
+   "video": "videos/day006.mp4",
+   "poster": "videos/day006.jpg",
+   "q": "eyJwcm9tcHQiOiAieC8zICsgeC80ID0gNy4gV2hhdCBpcyB0aGUgdmFsdWUgb2YgeD8iLCAiY2hvaWNlcyI6IFsiMSIsICIxMiIsICI0MiIsICIyNC41Il0sICJhIjogMSwgImV4cGxhaW4iOiAiVGhlIExDRCBvZiAzIGFuZCA0IGlzIDEyLiBNdWx0aXBseSBldmVyeSB0ZXJtIGJ5IDEyOiA0eCArIDN4ID0gODQsIHNvIDd4ID0gODQgYW5kIHggPSAxMi4gQ2hlY2s6IDEyLzMgKyAxMi80ID0gNCArIDMgPSA3LiJ9",
+   "boss": false,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Do one Khan Academy practice set on equations with fractions (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=linear%20equations%20with%20fractions"
+    },
+    {
+     "name": "Desmos",
+     "label": "Type x/3+x/4=7 into the SAT's own calculator and see where the answer pops up.",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Digital SAT Math",
+     "label": "You're at Level 5 \u2014 the real SAT course is unlocked. Free, made with the College Board.",
+     "url": "https://www.khanacademy.org/digital-sat"
+    }
+   ]
   }
  ],
  "prizes": {

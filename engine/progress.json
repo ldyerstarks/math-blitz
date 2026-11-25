@@ -1,5 +1,5 @@
 {
-  "last_day": 5,
+  "last_day": 6,
   "topic_index": 4,
   "level": 5.0,
   "history": [
@@ -35,8 +35,15 @@
       "day": 5,
       "topic": "Equations with fractions: clear the denominators",
       "title": "Fraction Smash",
-      "result": "pending",
+      "result": "skipped",
       "sent": true
+    },
+    {
+      "day": 6,
+      "topic": "Equations with fractions: clear the denominators (Instant Replay)",
+      "title": "No Fraction Zone",
+      "result": "pending",
+      "sent": false
     }
   ]
 }
