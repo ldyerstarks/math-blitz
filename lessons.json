@@ -203,6 +203,40 @@
      "url": "https://www.khanacademy.org/digital-sat"
     }
    ]
+  },
+  {
+   "rapid": [
+    "eyJwcm9tcHQiOiAiNHggXHUyMjEyIDcgPSAyeCArIDkuIFdoYXQgaXMgeD8iLCAiY2hvaWNlcyI6IFsiOCIsICIxNiIsICIxIiwgIlx1MjIxMjgiXSwgImEiOiAwLCAid2h5IjogIlN1YnRyYWN0IDJ4IGFuZCBhZGQgNzogMnggPSAxNiwgc28geCA9IDguIn0=",
+    "eyJwcm9tcHQiOiAieC8zICsgeC82ID0gNS4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyIzMCIsICIxMCIsICI1LzMiLCAiMjIuNSJdLCAiYSI6IDEsICJ3aHkiOiAiXHUwMGQ3IDYgZXZlcnkgdGVybTogMnggKyB4ID0gMzAgXHUyMTkyIDN4ID0gMzAgXHUyMTkyIHggPSAxMC4ifQ==",
+    "eyJwcm9tcHQiOiAiNSh4IFx1MjIxMiAyKSBcdTIyMTIgM3ggPSA4LiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIjUiLCAiXHUyMjEyMSIsICI5IiwgIjE4Il0sICJhIjogMiwgIndoeSI6ICJEaXN0cmlidXRlOiA1eCBcdTIyMTIgMTAgXHUyMjEyIDN4ID0gOCBcdTIxOTIgMnggPSAxOCBcdTIxOTIgeCA9IDkuIn0=",
+    "eyJwcm9tcHQiOiAiUGxhbiBBOiAkMjAgcGx1cyAkNCBwZXIgR0IuIFBsYW4gQjogJDggcGVyIEdCLCBubyBmZWUuIEF0IGhvdyBtYW55IEdCIGRvIHRoZXkgY29zdCB0aGUgc2FtZT8iLCAiY2hvaWNlcyI6IFsiMi41IEdCIiwgIjEwIEdCIiwgIjIwIEdCIiwgIjUgR0IiXSwgImEiOiAzLCAid2h5IjogIjIwICsgNGcgPSA4ZyBcdTIxOTIgMjAgPSA0ZyBcdTIxOTIgZyA9IDUgR0IuIn0=",
+    "eyJwcm9tcHQiOiAiSWYgMyh4ICsgMikgPSB4ICsgMTgsIHdoYXQgaXMgMnggXHUyMjEyIDE/IiwgImNob2ljZXMiOiBbIjYiLCAiMTEiLCAiMTUiLCAiMTIiXSwgImEiOiAxLCAid2h5IjogIjN4ICsgNiA9IHggKyAxOCBcdTIxOTIgMnggPSAxMiBcdTIxOTIgMnggXHUyMjEyIDEgPSAxMS4gTm8gbmVlZCB0byBmaW5kIHghIn0="
+   ],
+   "day": 7,
+   "title": "Week One Boss",
+   "video": "videos/day007.mp4",
+   "poster": "videos/day007.jpg",
+   "q": "eyJwcm9tcHQiOiAiMih4IFx1MjIxMiAxKS8zICsgeC8yID0geCArIDEuIFdoYXQgaXMgdGhlIHZhbHVlIG9mIHgvMj8iLCAiY2hvaWNlcyI6IFsiMi41IiwgIjMuNSIsICI1IiwgIjEwIl0sICJhIjogMiwgImV4cGxhaW4iOiAiTXVsdGlwbHkgZXZlcnkgdGVybSBieSA2OiA0KHggXHUyMjEyIDEpICsgM3ggPSA2eCArIDYsIHNvIDd4IFx1MjIxMiA0ID0gNnggKyA2IGFuZCB4ID0gMTAuIFRoZSBxdWVzdGlvbiBhc2tzIGZvciB4LzIsIHNvIHRoZSBhbnN3ZXIgaXMgNS4ifQ==",
+   "boss": true,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Boss quest: do one Khan Academy practice set on multi-step linear equations (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=multi-step%20linear%20equations"
+    },
+    {
+     "name": "Desmos",
+     "label": "Type 2(x-1)/3+x/2=x+1 into the SAT's own calculator and check where the answer pops up.",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Digital SAT Math",
+     "label": "You're at Level 5 \u2014 the real SAT course is unlocked. Free, made with the College Board.",
+     "url": "https://www.khanacademy.org/digital-sat"
+    }
+   ]
   }
  ],
  "prizes": {

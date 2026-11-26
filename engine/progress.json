@@ -1,7 +1,7 @@
 {
-  "last_day": 6,
+  "last_day": 7,
   "topic_index": 4,
-  "level": 5.0,
+  "level": 5.2,
   "history": [
     {
       "day": 1,
@@ -42,8 +42,15 @@
       "day": 6,
       "topic": "Equations with fractions: clear the denominators (Instant Replay)",
       "title": "No Fraction Zone",
-      "result": "pending",
+      "result": "correct",
       "sent": true
+    },
+    {
+      "day": 7,
+      "topic": "Boss Battle: Week 1 algebra mix",
+      "title": "Week One Boss",
+      "result": "pending",
+      "sent": false
     }
   ]
 }

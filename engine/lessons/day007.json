@@ -1,0 +1,127 @@
+{
+  "day": 7,
+  "title": "Week One Boss",
+  "topic": "Boss Battle: Week 1 algebra mix (two-step, both sides, distributing, fractions)",
+  "sat_domain": "Algebra",
+  "voice": "am_puck",
+  "speed": 1.08,
+  "scenes": [
+    {
+      "kind": "title",
+      "big": "WEEK ONE BOSS",
+      "sub": "Every move from this week, one fight",
+      "tag": "SAT skill: Algebra  ·  +50 XP",
+      "say": "Math Blitz, day seven! It's Boss Battle day! Everything you learned this week, all in one equation. Double XP on the line. Let's go!"
+    },
+    {
+      "kind": "board",
+      "heading": "THE BOSS PLAYBOOK",
+      "lines": [
+        {"t": "1. Clear the fractions", "c": "yellow"},
+        {"t": "2. Distribute", "c": "pink"},
+        {"t": "3. x on one side", "c": "white"},
+        {"t": "4. Finish it", "c": "green"}
+      ],
+      "note": "Same four moves every time.",
+      "note_at": 2.5,
+      "say": "Here's the playbook. Clear the fractions. Distribute. Get x on one side. Finish it. Four moves, every time."
+    },
+    {
+      "kind": "board",
+      "heading": "WARM-UP ROUND",
+      "lines": [
+        {"t": "(x + 1)/2 + x = 2(x − 1)", "c": "white", "s": 90},
+        {"t": "× 2 everybody", "c": "pink"},
+        {"t": "x + 1 + 2x = 4(x − 1)", "c": "yellow", "s": 90},
+        {"t": "3x + 1 = 4x − 4", "c": "white", "s": 100}
+      ],
+      "note": "The right side gets × 2 too!",
+      "note_at": 2.5,
+      "say": "x plus one, over two, plus x, equals two times x minus one. Times two, everybody! Now distribute. Three x plus one equals four x minus four."
+    },
+    {
+      "kind": "board",
+      "heading": "FINISH + READ TWICE",
+      "lines": [
+        {"t": "1 + 4 = 4x − 3x", "c": "white"},
+        {"t": "x = 5", "c": "green", "s": 140},
+        {"t": "Asked for 2x? Say 10!", "c": "pink"}
+      ],
+      "note": "Check: 3 + 5 = 8 and 2(4) = 8",
+      "note_at": 2.5,
+      "say": "Slide the x's together. x equals five! Now the SAT trap: read the question again. If they ask for two x, the answer is ten, not five."
+    },
+    {
+      "kind": "question",
+      "prompt": "2(x − 1)/3 + x/2 = x + 1",
+      "ask": "What is the value of x/2?",
+      "choices": ["2.5", "3.5", "5", "10"],
+      "hold": 3.0,
+      "say": "Boss time, champ! Fifty XP on the line. Two times x minus one, over three, plus x over two, equals x plus one. Careful, they want x over two! Tap your answer below the video!"
+    }
+  ],
+  "question": {
+    "prompt": "2(x − 1)/3 + x/2 = x + 1. What is the value of x/2?",
+    "choices": ["2.5", "3.5", "5", "10"],
+    "answer": 2,
+    "explain": "Multiply every term by 6: 4(x − 1) + 3x = 6x + 6, so 7x − 4 = 6x + 6 and x = 10. The question asks for x/2, so the answer is 5.",
+    "trap_notes": {
+      "0": "Forgot to multiply the 1 on the right by 6 (7x − 4 = 6x + 1 gives x = 5)",
+      "1": "Didn't distribute: wrote 4x − 1 instead of 4x − 4 (gives x = 7)",
+      "3": "Found x = 10 but answered x instead of x/2"
+    }
+  },
+  "level": 5.2,
+  "boss": true,
+  "resources": [
+    {
+      "name": "Khan Academy",
+      "quest": true,
+      "label": "Boss quest: do one Khan Academy practice set on multi-step linear equations (get 3 right in a row).",
+      "button": "Practice on Khan Academy",
+      "url": "https://www.khanacademy.org/search?page_search_query=multi-step%20linear%20equations"
+    },
+    {
+      "name": "Desmos",
+      "label": "Type 2(x-1)/3+x/2=x+1 into the SAT's own calculator and check where the answer pops up.",
+      "url": "https://www.desmos.com/calculator"
+    },
+    {
+      "name": "Khan: Digital SAT Math",
+      "label": "You're at Level 5 — the real SAT course is unlocked. Free, made with the College Board.",
+      "url": "https://www.khanacademy.org/digital-sat"
+    }
+  ],
+  "rapid": [
+    {
+      "prompt": "4x − 7 = 2x + 9. What is x?",
+      "choices": ["8", "16", "1", "−8"],
+      "answer": 0,
+      "why": "Subtract 2x and add 7: 2x = 16, so x = 8."
+    },
+    {
+      "prompt": "x/3 + x/6 = 5. What is x?",
+      "choices": ["30", "10", "5/3", "22.5"],
+      "answer": 1,
+      "why": "× 6 every term: 2x + x = 30 → 3x = 30 → x = 10."
+    },
+    {
+      "prompt": "5(x − 2) − 3x = 8. What is x?",
+      "choices": ["5", "−1", "9", "18"],
+      "answer": 2,
+      "why": "Distribute: 5x − 10 − 3x = 8 → 2x = 18 → x = 9."
+    },
+    {
+      "prompt": "Plan A: $20 plus $4 per GB. Plan B: $8 per GB, no fee. At how many GB do they cost the same?",
+      "choices": ["2.5 GB", "10 GB", "20 GB", "5 GB"],
+      "answer": 3,
+      "why": "20 + 4g = 8g → 20 = 4g → g = 5 GB."
+    },
+    {
+      "prompt": "If 3(x + 2) = x + 18, what is 2x − 1?",
+      "choices": ["6", "11", "15", "12"],
+      "answer": 1,
+      "why": "3x + 6 = x + 18 → 2x = 12 → 2x − 1 = 11. No need to find x!"
+    }
+  ]
+}
