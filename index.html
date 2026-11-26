@@ -426,6 +426,14 @@ async function boot() {
       ${right ? "" : `<div class="explain" style="margin-top:8px">💪 Tomorrow's video runs this play back so you'll own it. Win some XP back in Rapid Fire ⬇️</div>`}
       ${RAPID.length && !isDone("rapid") ? `<button class="btn go wide" id="toRapid" style="margin-top:14px">⚡ ${right ? "Keep it rolling" : "Win XP back"}: Rapid Fire · ${RAPID.length} quick taps · +${10 * mult * RAPID.length} XP ➜</button>` : ""}`;
     if ($("toRapid")) $("toRapid").onclick = () => go("rapid", "n");
+    if (fresh && $("toRapid")) { // auto-roll into Rapid Fire so he doesn't leave right after answering
+      const tb = $("toRapid"), base = tb.textContent; let n = 6;
+      const tick = setInterval(() => {
+        if (cur !== "answer" || !document.body.contains(tb) || isDone("rapid")) return clearInterval(tick);
+        if (--n <= 0) { clearInterval(tick); go("rapid", "x"); return; }
+        tb.textContent = base.replace(" ➜", "") + ` · starts in ${n}…`;
+      }, 1000);
+    }
     if (right && fresh) confetti();
     if (fresh) setTimeout(() => $("res").scrollIntoView({ behavior: "smooth", block: "start" }), 400);
   }
