@@ -1,0 +1,127 @@
+{
+  "day": 8,
+  "title": "Boss Rematch",
+  "topic": "Boss Battle: Week 1 algebra mix (Instant Replay: check by plugging back in)",
+  "sat_domain": "Algebra",
+  "voice": "am_puck",
+  "speed": 1.08,
+  "scenes": [
+    {
+      "kind": "title",
+      "big": "BOSS REMATCH",
+      "sub": "Same moves, plus a secret weapon",
+      "tag": "SAT skill: Algebra  ·  +25 XP",
+      "say": "Math Blitz, day eight! The Boss got away yesterday, so it's a Boss Rematch! Same moves, plus a secret weapon. Let's go!"
+    },
+    {
+      "kind": "board",
+      "heading": "REMATCH RULES",
+      "lines": [
+        {"t": "1. Clear the fractions", "c": "yellow"},
+        {"t": "2. Distribute", "c": "pink"},
+        {"t": "3. Solve for x", "c": "white"},
+        {"t": "4. Plug it back in", "c": "green"}
+      ],
+      "note": "Step 4 is the secret weapon.",
+      "note_at": 2.5,
+      "say": "The rematch rules. Clear the fractions. Distribute. Solve. Then the secret weapon: plug it back in."
+    },
+    {
+      "kind": "board",
+      "heading": "ROUND ONE",
+      "lines": [
+        {"t": "3(x − 1) + x/2 = 11", "c": "white", "s": 90},
+        {"t": "× 2 every term", "c": "pink"},
+        {"t": "6x − 6 + x = 22", "c": "yellow", "s": 90},
+        {"t": "7x = 28 → x = 4", "c": "green", "s": 100}
+      ],
+      "note": "The 11 gets × 2 too!",
+      "note_at": 2.5,
+      "say": "Three times x minus one, plus x over two, equals eleven. Times two, every term! Seven x minus six equals twenty-two. x equals four!"
+    },
+    {
+      "kind": "board",
+      "heading": "THE CHECK",
+      "lines": [
+        {"t": "3(4 − 1) + 4/2", "c": "white", "s": 100},
+        {"t": "= 9 + 2 = 11", "c": "yellow", "s": 100},
+        {"t": "It matches! Lock it in", "c": "green"}
+      ],
+      "note": "Wrong answer? The check catches it.",
+      "note_at": 2.5,
+      "say": "Now check it. Three times three is nine, plus four over two is two. Eleven! It matches, so lock it in."
+    },
+    {
+      "kind": "question",
+      "prompt": "2(x − 3) + x/2 = 9",
+      "ask": "What is the value of x?",
+      "choices": ["4.2", "4.8", "6", "8"],
+      "hold": 3.0,
+      "say": "Rematch time! Twenty-five XP on the line. Two times x minus three, plus x over two, equals nine. Find x, then check it. Tap your answer below the video!"
+    }
+  ],
+  "question": {
+    "prompt": "2(x − 3) + x/2 = 9. What is the value of x?",
+    "choices": ["4.2", "4.8", "6", "8"],
+    "answer": 2,
+    "explain": "Multiply every term by 2: 4(x − 3) + x = 18, so 5x − 12 = 18 and x = 6. Check: 2(3) + 6/2 = 6 + 3 = 9.",
+    "trap_notes": {
+      "0": "Forgot to multiply the 9 by 2 (5x − 12 = 9 gives x = 4.2)",
+      "1": "Distributed the 2 only to x: wrote 2x − 3 instead of 2x − 6 (gives x = 4.8)",
+      "3": "Only doubled the fraction, not 2(x − 3) (2x − 6 + x = 18 gives x = 8)"
+    }
+  },
+  "level": 4.7,
+  "boss": false,
+  "resources": [
+    {
+      "name": "Khan Academy",
+      "quest": true,
+      "label": "Rematch quest: do one Khan Academy practice set on multi-step equations with distribution (get 3 right in a row).",
+      "button": "Practice on Khan Academy",
+      "url": "https://www.khanacademy.org/search?page_search_query=multi-step%20equations%20with%20distribution"
+    },
+    {
+      "name": "Desmos",
+      "label": "Type 2(x-3)+x/2=9 into the SAT's own calculator and see your answer pop up. Instant check!",
+      "url": "https://www.desmos.com/calculator"
+    },
+    {
+      "name": "Khan: Digital SAT Math",
+      "label": "You're at Level 5 — the real SAT course is unlocked. Free, made with the College Board.",
+      "url": "https://www.khanacademy.org/digital-sat"
+    }
+  ],
+  "rapid": [
+    {
+      "prompt": "6x + 5 = 2x − 11. What is x?",
+      "choices": ["−4", "4", "−1.5", "−16"],
+      "answer": 0,
+      "why": "Subtract 2x and 5: 4x = −16, so x = −4."
+    },
+    {
+      "prompt": "x/4 + x/2 = 9. What is x?",
+      "choices": ["27", "3", "12", "36"],
+      "answer": 2,
+      "why": "× 4 every term: x + 2x = 36 → 3x = 36 → x = 12."
+    },
+    {
+      "prompt": "4(x + 3) − 2(x − 1) = 20. What is x?",
+      "choices": ["5", "3", "7.5", "17"],
+      "answer": 1,
+      "why": "4x + 12 − 2x + 2 = 20 → 2x + 14 = 20 → x = 3. (−2 × −1 = +2!)"
+    },
+    {
+      "prompt": "Mia has $50 and saves $6/week. Leo has $10 and saves $14/week. In how many weeks will they have the same?",
+      "choices": ["3 weeks", "2 weeks", "7.5 weeks", "5 weeks"],
+      "answer": 3,
+      "why": "50 + 6w = 10 + 14w → 40 = 8w → w = 5 weeks."
+    },
+    {
+      "prompt": "If x/3 + 2(x − 1) = 12, what is 7x?",
+      "choices": ["42", "6", "18", "39"],
+      "answer": 0,
+      "why": "× 3 every term: x + 6x − 6 = 36, so 7x = 42. No need to find x!"
+    }
+  ]
+}

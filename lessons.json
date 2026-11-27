@@ -237,6 +237,40 @@
      "url": "https://www.khanacademy.org/digital-sat"
     }
    ]
+  },
+  {
+   "rapid": [
+    "eyJwcm9tcHQiOiAiNnggKyA1ID0gMnggXHUyMjEyIDExLiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIlx1MjIxMjQiLCAiNCIsICJcdTIyMTIxLjUiLCAiXHUyMjEyMTYiXSwgImEiOiAwLCAid2h5IjogIlN1YnRyYWN0IDJ4IGFuZCA1OiA0eCA9IFx1MjIxMjE2LCBzbyB4ID0gXHUyMjEyNC4ifQ==",
+    "eyJwcm9tcHQiOiAieC80ICsgeC8yID0gOS4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyIyNyIsICIzIiwgIjEyIiwgIjM2Il0sICJhIjogMiwgIndoeSI6ICJcdTAwZDcgNCBldmVyeSB0ZXJtOiB4ICsgMnggPSAzNiBcdTIxOTIgM3ggPSAzNiBcdTIxOTIgeCA9IDEyLiJ9",
+    "eyJwcm9tcHQiOiAiNCh4ICsgMykgXHUyMjEyIDIoeCBcdTIyMTIgMSkgPSAyMC4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyI1IiwgIjMiLCAiNy41IiwgIjE3Il0sICJhIjogMSwgIndoeSI6ICI0eCArIDEyIFx1MjIxMiAyeCArIDIgPSAyMCBcdTIxOTIgMnggKyAxNCA9IDIwIFx1MjE5MiB4ID0gMy4gKFx1MjIxMjIgXHUwMGQ3IFx1MjIxMjEgPSArMiEpIn0=",
+    "eyJwcm9tcHQiOiAiTWlhIGhhcyAkNTAgYW5kIHNhdmVzICQ2L3dlZWsuIExlbyBoYXMgJDEwIGFuZCBzYXZlcyAkMTQvd2Vlay4gSW4gaG93IG1hbnkgd2Vla3Mgd2lsbCB0aGV5IGhhdmUgdGhlIHNhbWU/IiwgImNob2ljZXMiOiBbIjMgd2Vla3MiLCAiMiB3ZWVrcyIsICI3LjUgd2Vla3MiLCAiNSB3ZWVrcyJdLCAiYSI6IDMsICJ3aHkiOiAiNTAgKyA2dyA9IDEwICsgMTR3IFx1MjE5MiA0MCA9IDh3IFx1MjE5MiB3ID0gNSB3ZWVrcy4ifQ==",
+    "eyJwcm9tcHQiOiAiSWYgeC8zICsgMih4IFx1MjIxMiAxKSA9IDEyLCB3aGF0IGlzIDd4PyIsICJjaG9pY2VzIjogWyI0MiIsICI2IiwgIjE4IiwgIjM5Il0sICJhIjogMCwgIndoeSI6ICJcdTAwZDcgMyBldmVyeSB0ZXJtOiB4ICsgNnggXHUyMjEyIDYgPSAzNiwgc28gN3ggPSA0Mi4gTm8gbmVlZCB0byBmaW5kIHghIn0="
+   ],
+   "day": 8,
+   "title": "Boss Rematch",
+   "video": "videos/day008.mp4",
+   "poster": "videos/day008.jpg",
+   "q": "eyJwcm9tcHQiOiAiMih4IFx1MjIxMiAzKSArIHgvMiA9IDkuIFdoYXQgaXMgdGhlIHZhbHVlIG9mIHg/IiwgImNob2ljZXMiOiBbIjQuMiIsICI0LjgiLCAiNiIsICI4Il0sICJhIjogMiwgImV4cGxhaW4iOiAiTXVsdGlwbHkgZXZlcnkgdGVybSBieSAyOiA0KHggXHUyMjEyIDMpICsgeCA9IDE4LCBzbyA1eCBcdTIyMTIgMTIgPSAxOCBhbmQgeCA9IDYuIENoZWNrOiAyKDMpICsgNi8yID0gNiArIDMgPSA5LiJ9",
+   "boss": false,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Rematch quest: do one Khan Academy practice set on multi-step equations with distribution (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=multi-step%20equations%20with%20distribution"
+    },
+    {
+     "name": "Desmos",
+     "label": "Type 2(x-3)+x/2=9 into the SAT's own calculator and see your answer pop up. Instant check!",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Digital SAT Math",
+     "label": "You're at Level 5 \u2014 the real SAT course is unlocked. Free, made with the College Board.",
+     "url": "https://www.khanacademy.org/digital-sat"
+    }
+   ]
   }
  ],
  "prizes": {
