@@ -271,6 +271,40 @@
      "url": "https://www.khanacademy.org/digital-sat"
     }
    ]
+  },
+  {
+   "rapid": [
+    "eyJwcm9tcHQiOiAiXHUyMjEyM3ggPSAxOC4gV2hhdCBpcyB4PyIsICJjaG9pY2VzIjogWyI2IiwgIlx1MjIxMjYiLCAiXHUyMjEyNTQiLCAiMTUiXSwgImEiOiAxLCAid2h5IjogIkRpdmlkZSBib3RoIHNpZGVzIGJ5IFx1MjIxMjM6IDE4IFx1MDBmNyAoXHUyMjEyMykgPSBcdTIyMTI2LiJ9",
+    "eyJwcm9tcHQiOiAiMTAgXHUyMjEyICh4ICsgNCkgPSAxLiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIjEzIiwgIlx1MjIxMjUiLCAiNSIsICIzIl0sICJhIjogMiwgIndoeSI6ICJUaGUgbWludXMgaGl0cyBib3RoOiAxMCBcdTIyMTIgeCBcdTIyMTIgNCA9IDEgXHUyMTkyIDYgXHUyMjEyIHggPSAxIFx1MjE5MiB4ID0gNS4ifQ==",
+    "eyJwcm9tcHQiOiAiXHUyMjEyMih4IFx1MjIxMiA2KSA9IDR4LiBXaGF0IGlzIHg/IiwgImNob2ljZXMiOiBbIjIiLCAiXHUyMjEyMiIsICI2IiwgIjMiXSwgImEiOiAwLCAid2h5IjogIlx1MjIxMjJ4ICsgMTIgPSA0eCBcdTIxOTIgMTIgPSA2eCBcdTIxOTIgeCA9IDIuIChcdTIyMTIyIFx1MDBkNyBcdTIyMTI2ID0gKzEyISkifQ==",
+    "eyJwcm9tcHQiOiAiSXQncyA1XHUwMGIwRiBhbmQgdGhlIHRlbXBlcmF0dXJlIGRyb3BzIDNcdTAwYjAgZWFjaCBob3VyLiBBZnRlciBob3cgbWFueSBob3VycyBpcyBpdCBcdTIyMTIxNlx1MDBiMEY/IiwgImNob2ljZXMiOiBbIjExLzMiLCAiMjEiLCAiXHUyMjEyNyIsICI3Il0sICJhIjogMywgIndoeSI6ICI1IFx1MjIxMiAzaCA9IFx1MjIxMjE2IFx1MjE5MiBcdTIyMTIzaCA9IFx1MjIxMjIxIFx1MjE5MiBoID0gNyBob3Vycy4ifQ==",
+    "eyJwcm9tcHQiOiAiSWYgMyBcdTIyMTIgKDJ4IFx1MjIxMiA3KSA9IFx1MjIxMngsIHdoYXQgaXMgNHg/IiwgImNob2ljZXMiOiBbIjEwIiwgIlx1MjIxMjE2IiwgIjQwIiwgIlx1MjIxMjQwIl0sICJhIjogMiwgIndoeSI6ICIzIFx1MjIxMiAyeCArIDcgPSBcdTIyMTJ4IFx1MjE5MiAxMCBcdTIyMTIgMnggPSBcdTIyMTJ4IFx1MjE5MiB4ID0gMTAsIHNvIDR4ID0gNDAuIn0="
+   ],
+   "day": 9,
+   "title": "Minus Mayhem",
+   "video": "videos/day009.mp4",
+   "poster": "videos/day009.jpg",
+   "q": "eyJwcm9tcHQiOiAiNCBcdTIyMTIgKDN4IFx1MjIxMiA4KSA9IFx1MjIxMjkuIFdoYXQgaXMgdGhlIHZhbHVlIG9mIHggXHUyMjEyIDI/IiwgImNob2ljZXMiOiBbIjciLCAiXHUyMjEyOSIsICJcdTIyMTIxLzMiLCAiNSJdLCAiYSI6IDMsICJleHBsYWluIjogIlRoZSBtaW51cyBoaXRzIGJvdGggdGVybXM6IDQgXHUyMjEyIDN4ICsgOCA9IFx1MjIxMjksIHNvIDEyIFx1MjIxMiAzeCA9IFx1MjIxMjksIFx1MjIxMjN4ID0gXHUyMjEyMjEgYW5kIHggPSA3LiBCdXQgdGhlIHF1ZXN0aW9uIGFza3MgZm9yIHggXHUyMjEyIDIsIHNvIHRoZSBhbnN3ZXIgaXMgNS4ifQ==",
+   "boss": false,
+   "resources": [
+    {
+     "name": "Khan Academy",
+     "quest": true,
+     "label": "Do one Khan Academy practice set on equations with parentheses and negatives (get 3 right in a row).",
+     "button": "Practice on Khan Academy",
+     "url": "https://www.khanacademy.org/search?page_search_query=linear%20equations%20with%20parentheses"
+    },
+    {
+     "name": "Desmos",
+     "label": "Type 4-(3x-8)=-9 into the SAT's own calculator and watch x pop up. Then do the last step yourself!",
+     "url": "https://www.desmos.com/calculator"
+    },
+    {
+     "name": "Khan: Digital SAT Math",
+     "label": "You're at Level 5 \u2014 the real SAT course is unlocked. Free, made with the College Board.",
+     "url": "https://www.khanacademy.org/digital-sat"
+    }
+   ]
   }
  ],
  "prizes": {
